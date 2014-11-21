@@ -5,8 +5,10 @@ class WantedItemsController < ApplicationController
   def submit
     item = Item.find(params[:data][:item_id])
     list = List.find(params[:data][:list_id])
-    @wanted_item = WantedItem.create({user_id: current_user.id, item_id: params[:data][:item_id], list_id: params[:data][:list_id]})
-    list.wanted_items << @wanted_item
+    if !(list.items.include? item)
+      @wanted_item = WantedItem.create({user_id: current_user.id, item_id: params[:data][:item_id], list_id: params[:data][:list_id]})
+      list.wanted_items << @wanted_item
+    end
     respond_to do |format|
       if @wanted_item.save
         format.json { render :show, status: :created, location: @wanted_item }

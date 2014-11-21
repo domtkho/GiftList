@@ -172,6 +172,13 @@ p.copyright {
     margin: 15px 0 0;
 }
 
+input.search-bar {
+  height: 30px;
+  border-radius: 15px;
+  border: none;
+  margin: 10px 15px;
+  padding-left: 10px;
+}
 /*******   SIDEBAR /
 /********************************************/
 
@@ -211,13 +218,6 @@ hr.item-divider {
   margin: 5px 0;
 }
 
-input.search-bar {
-  height: 30px;
-  border-radius: 15px;
-  border: none;
-  margin: 10px 15px;
-  padding-left: 10px;
-}
 
 /*******   MAIN SECTION /
 /********************************************/
@@ -231,6 +231,9 @@ div.inner-tile {
   padding: 20px;
   border-radius: 10px;
   background: #FFFFFF;
+  -webkit-box-shadow: 10px 10px 7px -1px rgba(0,0,0,0.56);
+  -moz-box-shadow: 10px 10px 7px -1px rgba(0,0,0,0.56);
+  box-shadow: 10px 10px 7px -1px rgba(0,0,0,0.56);
 }
 
 h2.product-name {
@@ -261,6 +264,7 @@ div.product-mask {
 img.item-display-image {
   height: 200px;
 }
+
 
 
 

@@ -56,8 +56,9 @@
             <p class="category-name">{{ item.category }}</p>
             <h3 class="pull-right">{{ item.price | currency }}</h3>
 
+
             <!-- Button trigger modal for see more-->
-            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#product-{{ item.id }}">
+            <button type="button" class="btn btn-primary btn-block item-button" data-toggle="modal" data-target="#product-{{ item.id }}">
               See More
             </button>
             <!-- Modal for adding to see more-->
@@ -85,7 +86,8 @@
             </div>
 
             <!-- Button trigger modal for adding to wish list-->
-            <button type="button" class="btn btn-success btn-block add-to-wish-list" data-toggle="modal" data-target="#item-{{ item.id }}">
+
+            <button type="button" class="btn btn-success btn-block item-button" data-toggle="modal" data-target="#item-{{ item.id }}">
               Add to Wish List
             </button>
             <!-- Modal for adding to wish list-->
@@ -107,6 +109,8 @@
                 </div>
               </div>
             </div>
+
+
           </div>
         </div>
       </div>
