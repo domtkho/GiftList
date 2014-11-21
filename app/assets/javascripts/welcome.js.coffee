@@ -6,6 +6,8 @@ App = angular.module('myApp', [])
 
 App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
 
+  $scope.wish_lists = {}
+
   $scope.loadItems = ->
     $http.get("/items.json")
       .success (data) ->

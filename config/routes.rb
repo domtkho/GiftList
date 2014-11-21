@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :users
   resources :items
+  # get 'blah/:list_id' => 'items#blah'
   resources :comments
   resources :lists
   # resources :lists, only: [:index, :show, :create] do
