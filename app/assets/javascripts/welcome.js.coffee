@@ -44,6 +44,18 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
       .error (data) ->
         console.log "data error"
 
+  $scope.showList = ->
+    $http.get("/lists.json")
+      .success (data) ->
+        container = data[0].wanted_items
+        newData = []
+        for obj in container
+          newData.push obj.item
+        $scope.items = newData
+        console.log $scope.items
+      .error (data) ->
+        console.log "Wish list error"
+
   $scope.loadItems()
   $scope.loadWishList()
 ])
