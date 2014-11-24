@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20141117114109) do
     t.integer  "user_id"
     t.integer  "list_id"
     t.integer  "item_id"
+    t.integer  "item_priority"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
