@@ -26,7 +26,7 @@
     </div>
 
     <div ng-repeat="wish_list in wish_lists">
-      <div class="wish-list-container">
+      <div class="wish-list-container" id="#list-drop">
         <h2 class="wish-list-name">{{ wish_list.list_name }}</h2>
         <div ng-repeat="wanted_item in wish_list.wanted_items">
           <div class="item-container">
@@ -39,15 +39,27 @@
         <div class="see-more btn" ng-click="showList()">Show list</div>
       </div>
     </div>
+  
+  <!-- SAMPLE CODE  -->
+      <div class="container">
+      <div id="dd-elements" class="clearfix">
 
+        <div id="drop-target-one">
+          Drop Here!
+        </div>
+      </div>
+    </div>
+<!-- SAMPLE CODE END -->
 
   </div>
+
+
 
   <div class="col-md-9 main-section">
 
     <div ng-repeat="item in items | filter:searchText">
       <div class="col-md-4 product-tile">
-        <div class="inner-tile">
+        <div class="inner-tile" draggable="true">
           <h2 class="product-name">{{ item.name }}</h2>
           <hr class="product-name-divider">
           <div class="product-mask"><img src="{{ item.image }}" alt="item image" class="item-display-image"></div>
