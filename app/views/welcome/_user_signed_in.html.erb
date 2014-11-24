@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-3 side-bar">
+  <div class="col-md-2 side-bar">
     <img src="https://graph.facebook.com/<%= current_user.uid %>/picture?width=300&height=300" alt="" class="sidebar-profile-image">
 
     <div ng-repeat="wish_list in wish_lists">
@@ -29,7 +29,7 @@
 
 
 
-  <div class="col-md-9 main-section">
+  <div class="col-md-8 main-section">
 
     <div ng-repeat="item in items | filter:searchText" ng-init="$last ? dragdrop() : null">
       <div class="col-md-4 product-tile">
@@ -72,5 +72,7 @@
         </div>
       </div>
     </div>
+   </div>
+   <div class="col-md-2 side-bar">
    </div>
 </div>
