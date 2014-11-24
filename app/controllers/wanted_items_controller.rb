@@ -3,10 +3,10 @@ class WantedItemsController < ApplicationController
 
   # POST /api/wanted_items/submit.json
   def submit
-    item = Item.find(params[:data][:item_id])
-    list = List.find(params[:data][:list_id])
+    item = Item.find(params[:item_id])
+    list = current_user.lists.first
     if !(list.items.include? item)
-      @wanted_item = WantedItem.create({user_id: current_user.id, item_id: params[:data][:item_id], list_id: params[:data][:list_id]})
+      @wanted_item = WantedItem.create({user_id: current_user.id, item_id: params[:item_id], list_id: current_user.lists.first.id})
       list.wanted_items << @wanted_item
     end
     respond_to do |format|

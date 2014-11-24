@@ -22,8 +22,8 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
       .error (data) ->
         console.log "Wish list error"
 
-  $scope.addItemToWishList = (wishlistId, itemId) ->
-    jsonObj = {"data": {"list_id": wishlistId, "item_id": itemId }}
+  $scope.addItemToWishList = (itemId) ->
+    jsonObj = { "item_id": itemId }
 
     # Devise requires a CSRF token be included with all requests. The presence of this token
     # guarantees that the current page was meant to make this request.
@@ -58,82 +58,54 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
       .error (data) ->
         console.log "Wish list error"
 
+  $scope.log = ->
+    console.log "HAHAHA"
+
+  $scope.dragdrop = ->
+    dropZoneOne = document.querySelector("#drop-target-one")
+    dragElements = document.querySelectorAll(".list-drop")
+    elementDragged = null
+    i = 0
+
+    while i < dragElements.length
+      dragElements[i].addEventListener "dragstart", (e) ->
+        e.dataTransfer.effectAllowed = "move"
+        e.dataTransfer.setData "text", @innerHTML
+        elementDragged = this
+        $scope.selectedItem = $(@).data("item")
+        return
+
+      dragElements[i].addEventListener "dragend", (e) ->
+        elementDragged = null
+        return
+      i++
+
+    dropZoneOne.addEventListener "dragover", (e) ->
+      e.preventDefault()  if e.preventDefault
+      e.dataTransfer.dropEffect = "move"
+      false
+
+    dropZoneOne.addEventListener "dragenter", (e) ->
+      @className = "over"
+      return
+
+    dropZoneOne.addEventListener "dragleave", (e) ->
+      @className = ""
+      return
+
+    dropZoneOne.addEventListener "drop", (e) ->
+      e.preventDefault()  if e.preventDefault
+      e.stopPropagation()  if e.stopPropagation
+      @className = ""
+      $scope.addItemToWishList($scope.selectedItem)
+      elementDragged = null
+      $scope.loadWishList()
+      false
+
+    return
+
   $scope.loadItems()
   $scope.loadWishList()
+  # $scope.test()
 ])
 
-window.onload = ->
-
-  ###*
-  Demo 1: Elements
-  ###
-
-  # Event Listener for when the drag interaction starts.
-
-  # Event Listener for when the drag interaction finishes.
-
-  # Event Listener for when the dragged element is over the drop zone.
-
-  # Event Listener for when the dragged element enters the drop zone.
-
-  # Event Listener for when the dragged element leaves the drop zone.
-
-  # Event Listener for when the dragged element dropped in the drop zone.
-
-  # Remove the element from the list.
-
-  ###*
-  Demo 2: Text Files
-  ###
-
-  # Event Listener for when the dragged file is over the drop zone.
-
-  # Event Listener for when the dragged file enters the drop zone.
-
-  # Event Listener for when the dragged file leaves the drop zone.
-
-  # Event Listener for when the dragged file dropped in the drop zone.
-
-  # Read the contents of a file.
-
-  dropZoneOne = document.querySelector("#drop-target-one")
-  dragElements = document.querySelectorAll("#list-drop")
-  elementDragged = null
-  i = 0
-
-  while i < dragElements.length
-    dragElements[i].addEventListener "dragstart", (e) ->
-      e.dataTransfer.effectAllowed = "move"
-      e.dataTransfer.setData "text", @innerHTML
-      elementDragged = this
-      return
-
-    dragElements[i].addEventListener "dragend", (e) ->
-      elementDragged = null
-      return
-    i++
-
-  dropZoneOne.addEventListener "dragover", (e) ->
-    e.preventDefault()  if e.preventDefault
-    e.dataTransfer.dropEffect = "move"
-    false
-
-  dropZoneOne.addEventListener "dragenter", (e) ->
-    @className = "over"
-    return
-
-  dropZoneOne.addEventListener "dragleave", (e) ->
-    @className = ""
-    return
-
-  dropZoneOne.addEventListener "drop", (e) ->
-    e.preventDefault()  if e.preventDefault
-    e.stopPropagation()  if e.stopPropagation
-    @className = ""
-    elementDragged = null
-    console.log "Dropped!"
-    $.post(
-      )
-    false
-
-  return

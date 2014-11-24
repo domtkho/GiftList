@@ -26,7 +26,7 @@
     </div>
 
     <div ng-repeat="wish_list in wish_lists">
-      <div class="wish-list-container" id="#list-drop">
+      <div class="wish-list-container">
         <h2 class="wish-list-name">{{ wish_list.list_name }}</h2>
         <div ng-repeat="wanted_item in wish_list.wanted_items">
           <div class="item-container">
@@ -54,9 +54,9 @@
 
   <div class="col-md-9 main-section">
 
-    <div ng-repeat="item in items | filter:searchText">
+    <div ng-repeat="item in items | filter:searchText" ng-init="$last ? dragdrop() : null">
       <div class="col-md-4 product-tile">
-        <div class="inner-tile" draggable="true">
+        <div class="inner-tile list-drop" draggable="true" data-item="{{ item.id }}">
           <h2 class="product-name">{{ item.name }}</h2>
           <hr class="product-name-divider">
           <div class="product-mask"><img src="{{ item.image }}" alt="item image" class="item-display-image"></div>
@@ -91,32 +91,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Button trigger modal for adding to wish list-->
-
-          <button type="button" class="btn btn-success btn-block item-button" data-toggle="modal" data-target="#item-{{ item.id }}">
-            Add to Wish List
-          </button>
-          <!-- Modal for adding to wish list-->
-          <div class="modal fade" id="item-{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <h4 class="modal-title" id="myModalLabel">Pick a wish list</h4>
-                </div>
-                <div class="modal-body">
-                  <div ng-repeat="wish_list in wish_lists">
-                    <div class="btn btn-success btn-block add-to-wish-list" ng-click="addItemToWishList(wish_list.id, item.id)">{{ wish_list.list_name }}</div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
 
         </div>
       </div>
