@@ -63,50 +63,41 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
 ])
 
 window.onload = ->
-  
+
   ###*
   Demo 1: Elements
   ###
-  
+
   # Event Listener for when the drag interaction starts.
-  
+
   # Event Listener for when the drag interaction finishes.
-  
+
   # Event Listener for when the dragged element is over the drop zone.
-  
+
   # Event Listener for when the dragged element enters the drop zone.
-  
+
   # Event Listener for when the dragged element leaves the drop zone.
-  
+
   # Event Listener for when the dragged element dropped in the drop zone.
-  
+
   # Remove the element from the list.
-  
+
   ###*
   Demo 2: Text Files
   ###
-  
-  # Event Listener for when the dragged file is over the drop zone.
-  
-  # Event Listener for when the dragged file enters the drop zone.
-  
-  # Event Listener for when the dragged file leaves the drop zone.
-  
-  # Event Listener for when the dragged file dropped in the drop zone.
-  
-  # Read the contents of a file.
-  readTextFile = (file) ->
-    reader = new FileReader()
-    reader.onloadend = (e) ->
-      if e.target.readyState is FileReader.DONE
-        content = reader.result
-        fileContentPane.innerHTML = "File: " + file.name + "\n\n" + content
-      return
 
-    reader.readAsBinaryString file
-    return
-  dropZoneOne = document.querySelector("#list-drop")
-  dragElements = document.querySelectorAll("#drag-elements li")
+  # Event Listener for when the dragged file is over the drop zone.
+
+  # Event Listener for when the dragged file enters the drop zone.
+
+  # Event Listener for when the dragged file leaves the drop zone.
+
+  # Event Listener for when the dragged file dropped in the drop zone.
+
+  # Read the contents of a file.
+
+  dropZoneOne = document.querySelector("#drop-target-one")
+  dragElements = document.querySelectorAll("#list-drop")
   elementDragged = null
   i = 0
 
@@ -120,8 +111,8 @@ window.onload = ->
     dragElements[i].addEventListener "dragend", (e) ->
       elementDragged = null
       return
-
     i++
+
   dropZoneOne.addEventListener "dragover", (e) ->
     e.preventDefault()  if e.preventDefault
     e.dataTransfer.dropEffect = "move"
@@ -139,33 +130,10 @@ window.onload = ->
     e.preventDefault()  if e.preventDefault
     e.stopPropagation()  if e.stopPropagation
     @className = ""
-    @innerHTML = "ITEM ADDED TO LIST " + e.dataTransfer.getData("text")
-    document.querySelector("#drag-elements").removeChild elementDragged
     elementDragged = null
+    console.log "Dropped!"
+    $.post(
+      )
     false
-
-  dropZoneTwo = document.querySelector("#dd-files")
-  fileContentPane = document.querySelector("#file-content")
-  dropZoneTwo.addEventListener "dragover", (e) ->
-    e.preventDefault()  if e.preventDefault
-    e.stopPropagation()  if e.stopPropagation
-    e.dataTransfer.dropEffect = "copy"
-    return
-
-  dropZoneTwo.addEventListener "dragenter", (e) ->
-    @className = "over"
-    return
-
-  dropZoneTwo.addEventListener "dragleave", (e) ->
-    @className = ""
-    return
-
-  dropZoneTwo.addEventListener "drop", (e) ->
-    e.preventDefault()  if e.preventDefault
-    e.stopPropagation()  if e.stopPropagation
-    @className = ""
-    fileList = e.dataTransfer.files
-    readTextFile fileList[0]  if fileList.length > 0
-    return
 
   return
