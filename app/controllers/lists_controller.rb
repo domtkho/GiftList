@@ -25,17 +25,6 @@ class ListsController < ApplicationController
   # POST /lists
   # POST /lists.json
   def create
-    @new_list = List.create({list_name: params[:list_name], user_id: current_user.id})
-    current_user.lists << @new_list
-
-    respond_to do |format|
-      if @new_list.save
-        format.json { render :show, status: :created, location: @new_list }
-      else
-        format.json { render json: @new_list.errors, status: :unprocessable_entity }
-      end
-    end
-
   end
 
   # PATCH/PUT /lists/1

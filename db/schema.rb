@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141117114109) do
+ActiveRecord::Schema.define(version: 20141124090739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20141117114109) do
   end
 
   create_table "lists", force: true do |t|
-    t.string   "list_name"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -67,7 +66,6 @@ ActiveRecord::Schema.define(version: 20141117114109) do
     t.integer  "user_id"
     t.integer  "list_id"
     t.integer  "item_id"
-    t.integer  "item_priority"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

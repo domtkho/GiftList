@@ -2,29 +2,6 @@
   <div class="col-md-3 side-bar">
     <img src="https://graph.facebook.com/<%= current_user.uid %>/picture?width=300&height=300" alt="" class="sidebar-profile-image">
 
-    <!-- Button trigger modal for see more-->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newWishList">
-      Create new wish list
-    </button>
-    <!-- Modal for adding to see more-->
-    <div class="modal fade" id="newWishList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="myModalLabel">Add new wish list</h4>
-          </div>
-          <div class="modal-body">
-            <input type="text" ng-model="newListName">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="addNewWishList()">Submit</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div ng-repeat="wish_list in wish_lists">
       <div class="wish-list-container">
         <h2 class="wish-list-name">{{ wish_list.list_name }}</h2>

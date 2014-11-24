@@ -1,5 +1,5 @@
 json.array!(@lists) do |list|
-  json.extract! list, :id, :list_name, :user_id
+  json.extract! list, :id, :user_id
   json.wanted_items list.wanted_items do |wanted_item|
     json.extract! wanted_item, :item
   end
