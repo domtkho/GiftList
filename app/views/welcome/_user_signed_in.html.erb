@@ -1,74 +1,85 @@
 <div class="container-fluid">
-<div class="row">
-  <div class="col-md-3 sidebar">
-    <img src="https://graph.facebook.com/<%= current_user.uid %>/picture?width=300&height=300" alt="" class="sidebar-profile-image">
+  <div class="row">
+    <div class="col-md-2 sidebar-left">
+      <img src="https://graph.facebook.com/<%= current_user.uid %>/picture?width=300&height=300" alt="" class="sidebar-profile-image">
 
-    <div class="wish-list-container">
-      <h2 class="wishlist-title">Wish List</h2>
-      <div ng-repeat="wanted_item in wish_lists">
-        <div class="item-container">
-          <span>{{ wanted_item.item.name }}</span>
-          <span class="pull-right">{{ wanted_item.item.price | currency }}</span>
+      <div class="wish-list-container">
+        <h2 class="wishlist-title">Wish List</h2>
+        <div ng-repeat="wanted_item in wish_lists">
+          <div class="item-container">
+            <span>{{ wanted_item.item.name }}</span>
+            <span class="pull-right">{{ wanted_item.item.price | currency }}</span>
+          </div>
         </div>
+
+        <div id="dd-elements" class="clearfix">
+          <div id="drop-target-one">
+            Drop items to add to wish list
+          </div>
+        </div>
+
+        <div class="see-more btn pull-right" ng-click="showList()">Show list</div>
       </div>
 
-      <div id="dd-elements" class="clearfix">
-        <div id="drop-target-one">
-          Drop items to add to wish list
-        </div>
-      </div>
-
-      <div class="see-more btn pull-right" ng-click="showList()">Show list</div>
     </div>
 
-  </div>
+
+    <div class="col-md-8 col-md-offset-2 main-section">
+
+      <div ng-repeat="item in items | filter:searchText" ng-init="$last ? dragdrop() : null">
+        <div class="col-md-4 product-tile">
+          <div class="inner-tile list-drop" draggable="true" data-item="{{ item.id }}">
+            <h2 class="product-name">{{ item.name }}</h2>
+            <hr class="product-name-divider">
+            <div class="product-mask"><img src="{{ item.image }}" alt="item image" class="item-display-image"></div>
+            <div class="row category-price-container">
+              <span class="category-name">{{ item.category }}</span>
+              <span class="item-price pull-right">{{ item.price | currency }}</span>
+            </div>
 
 
-  <div class="col-md-9 col-md-offset-3 main-section">
+            <!-- Button trigger modal for see more-->
+            <button type="button" class="btn btn-primary btn-block item-button" data-toggle="modal" data-target="#product-{{ item.id }}">
+              See More
+            </button>
+            <!-- Modal for adding to see more-->
+            <div class="modal fade" id="product-{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Product Information</h4>
+                  </div>
+                  <div class="modal-body">
 
-    <div ng-repeat="item in items | filter:searchText" ng-init="$last ? dragdrop() : null">
-      <div class="col-md-3 product-tile">
-        <div class="inner-tile list-drop" draggable="true" data-item="{{ item.id }}">
-          <h2 class="product-name">{{ item.name }}</h2>
-          <hr class="product-name-divider">
-          <div class="product-mask"><img src="{{ item.image }}" alt="item image" class="item-display-image"></div>
-          <div class="row category-price-container">
-            <span class="category-name">{{ item.category }}</span>
-            <span class="item-price pull-right">{{ item.price | currency }}</span>
-          </div>
+                    <h2>{{ item.name }}</h2>
+                    <h3>{{ item.category }}</h3>
+                    <p>{{ item.price | currency }}</p>
+                    <img src="{{ item.image }}" alt="product image">
+                    <p>{{ item.description }}</p>
 
-
-          <!-- Button trigger modal for see more-->
-          <button type="button" class="btn btn-primary btn-block item-button" data-toggle="modal" data-target="#product-{{ item.id }}">
-            See More
-          </button>
-          <!-- Modal for adding to see more-->
-          <div class="modal fade" id="product-{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <h4 class="modal-title" id="myModalLabel">Product Information</h4>
-                </div>
-                <div class="modal-body">
-
-                  <h2>{{ item.name }}</h2>
-                  <h3>{{ item.category }}</h3>
-                  <p>{{ item.price | currency }}</p>
-                  <img src="{{ item.image }}" alt="product image">
-                  <p>{{ item.description }}</p>
-
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
+          </div>
         </div>
       </div>
     </div>
-   </div>
+
+    <div class="col-md-2 sidebar-right">
+      <h2 class="friend-title">Friends</h2>
+      <% @friends_array.each do |friend| %>
+        <div class="friend-container">
+          <span><%= image_tag friend.image, {class: "friend-thumbnail"} %></span>
+          <span class="friend-name"><%= friend['name'] %></span>
+        </div>
+      <% end %>
+    </div>
+
   </div>
 </div>

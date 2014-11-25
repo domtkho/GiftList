@@ -176,16 +176,23 @@ html, body, .container-fluid, .row {
 }
 
 @media (min-width: 992px) {
-  .sidebar {
+
+  .sidebar-left,
+  .sidebar-right {
     position: fixed;
     top: 50px;
-    left: 0;
     bottom: 0;
     z-index: 1000;
     background-color: #90A4AE;
     display: block;
     padding: 0;
     text-align: center;
+  }
+  .sidebar-left {
+    left: 0;
+  }
+  .sidebar-right {
+    right: 0;
   }
 }
 
@@ -231,6 +238,30 @@ div.item-container {
   background: #F7F7F7;
 }
 
+div.friend-container {
+  height: 50px;
+  padding-left: 5px;
+  margin-top: 3px;
+  background-color: #FFFFFF;
+  text-align: left;
+}
+
+span.friend-name {
+
+}
+
+img.friend-thumbnail {
+  height: 40px;
+  width: 40px;
+  margin: 5px;
+}
+
+h2.friend-title {
+  color: #FFFFFF;
+  margin: 0;
+  padding: 10px 0;
+  text-align: center;
+}
 
 /*******   MAIN SECTION /
 /********************************************/
