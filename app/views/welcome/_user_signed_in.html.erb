@@ -1,76 +1,32 @@
-<div class="row">
-  <div class="col-md-3 side-bar">
-    <img src="https://graph.facebook.com/<%= current_user.uid %>/picture?width=300&height=300" alt="" class="sidebar-profile-image">
-
+<div class="container">
+  <div class="row">
+    <div class="col-md-2" id="sidebar"><h2 id="user-name"><%= current_user.name %></h2>
+    <div class="picture-container" id="drop-target-one">
+    <img id="fb-pic-hires" src="https://graph.facebook.com/<%= current_user.uid %>/picture?width=300&height=300" alt="" class="sidebar-profile-image">
+    </div>
     <div ng-repeat="wish_list in wish_lists">
       <div class="wish-list-container">
-        <h2 class="wish-list-name">{{ wish_list.list_name }}</h2>
         <div ng-repeat="wanted_item in wish_list.wanted_items">
           <div class="item-container">
-            <hr class="item-divider">
-            <span>{{ wanted_item.item.name }}</span>
-            <span class="pull-right">{{ wanted_item.item.price | currency }}</span>
+            <span class="item-name">{{ wanted_item.item.name }}</span>
           </div>
         </div>
-        <hr class="item-divider">
-        <div class="see-more btn" ng-click="showList()">Show list</div>
       </div>
     </div>
+    
 
-    <!-- SAMPLE CODE  -->
-    <div id="dd-elements" class="clearfix">
-      <div id="drop-target-one">
-        Drop Here!
-      </div>
     </div>
-    <!-- SAMPLE CODE END -->
 
+
+
+    <div class="col-md-10"><h2>Item List</h2>
+      <div ng-repeat="item in items | filter:searchText" ng-init="$last ? dragdrop() : null">
+        <div class="col-md-4 product-tile">
+          <div class="inner-tile list-drop" draggable="true" data-item="{{ item.id }}">
+            <h3 class="product-name">{{ item.name }}</h3>
+            <div class="product-mask"><img src="{{ item.image }}" alt="item image" class="item-display-image"></div>
+            <p class="category-name">{{ item.category }}</p>
+            <h3 class="pull-right">{{ item.price | currency }}</h3>
+    </div>
   </div>
-
-
-
-  <div class="col-md-9 main-section">
-
-    <div ng-repeat="item in items | filter:searchText" ng-init="$last ? dragdrop() : null">
-      <div class="col-md-4 product-tile">
-        <div class="inner-tile list-drop" draggable="true" data-item="{{ item.id }}">
-          <h2 class="product-name">{{ item.name }}</h2>
-          <hr class="product-name-divider">
-          <div class="product-mask"><img src="{{ item.image }}" alt="item image" class="item-display-image"></div>
-          <p class="category-name">{{ item.category }}</p>
-          <h3 class="pull-right">{{ item.price | currency }}</h3>
-
-
-          <!-- Button trigger modal for see more-->
-          <button type="button" class="btn btn-primary btn-block item-button" data-toggle="modal" data-target="#product-{{ item.id }}">
-            See More
-          </button>
-          <!-- Modal for adding to see more-->
-          <div class="modal fade" id="product-{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <h4 class="modal-title" id="myModalLabel">Product Information</h4>
-                </div>
-                <div class="modal-body">
-
-                  <h2>{{ item.name }}</h2>
-                  <h3>{{ item.category }}</h3>
-                  <p>{{ item.price | currency }}</p>
-                  <img src="{{ item.image }}" alt="product image">
-                  <p>{{ item.description }}</p>
-
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-   </div>
 </div>

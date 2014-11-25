@@ -2,18 +2,21 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
-.navbar-default {
-  background-color:#778899;
-  background-image:none;
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic);
+
+.container {
+  width:100%
 }
 
-body {
-  padding-top: 50px;
+h1,h2,h3,h4,h5,h6,.item-name {
+  padding:25px;
+  font-family:"Roboto";
+  font-weight:100;
+  color:white;
+
 }
 
-img.navbar-profile-thumbnail {
-  height: 40px;
-  width: 40px;
-  margin-top: 5px;
-  border-radius: 5px;
+#headerRow {
+  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+  background-color:#FF1744;
 }
