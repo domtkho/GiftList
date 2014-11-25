@@ -1,44 +1,44 @@
+<div class="container-fluid">
 <div class="row">
-  <div class="col-md-3 side-bar">
+  <div class="col-md-3 sidebar">
     <img src="https://graph.facebook.com/<%= current_user.uid %>/picture?width=300&height=300" alt="" class="sidebar-profile-image">
 
-    <div ng-repeat="wish_list in wish_lists">
-      <div class="wish-list-container">
-        <h2 class="wish-list-name">{{ wish_list.list_name }}</h2>
-        <div ng-repeat="wanted_item in wish_list.wanted_items">
-          <div class="item-container">
-            <hr class="item-divider">
-            <span>{{ wanted_item.item.name }}</span>
-            <span class="pull-right">{{ wanted_item.item.price | currency }}</span>
-          </div>
+    <div class="wish-list-container">
+      <h2 class="wishlist-title">Wish List</h2>
+      <div ng-repeat="wanted_item in wish_lists">
+        <div class="item-container">
+          <span>{{ wanted_item.item.name }}</span>
+          <span class="pull-right">{{ wanted_item.item.price | currency }}</span>
         </div>
-        <hr class="item-divider">
-        <div class="see-more btn" ng-click="showList()">Show list</div>
       </div>
+
+      <div id="dd-elements" class="clearfix">
+        <div id="drop-target-one">
+          Drop items to add to wish list
+        </div>
+      </div>
+
+      <div class="see-more btn pull-right" ng-click="showList()">Show list</div>
     </div>
 
-    <!-- SAMPLE CODE  -->
-    <div id="dd-elements" class="clearfix">
-      <div id="drop-target-one">
-        Drop Here!
-      </div>
-    </div>
-    <!-- SAMPLE CODE END -->
+
 
   </div>
 
 
 
-  <div class="col-md-9 main-section">
+  <div class="col-md-9 col-md-offset-3 main-section">
 
     <div ng-repeat="item in items | filter:searchText" ng-init="$last ? dragdrop() : null">
-      <div class="col-md-4 product-tile">
+      <div class="col-md-3 product-tile">
         <div class="inner-tile list-drop" draggable="true" data-item="{{ item.id }}">
           <h2 class="product-name">{{ item.name }}</h2>
           <hr class="product-name-divider">
           <div class="product-mask"><img src="{{ item.image }}" alt="item image" class="item-display-image"></div>
-          <p class="category-name">{{ item.category }}</p>
-          <h3 class="pull-right">{{ item.price | currency }}</h3>
+          <div class="row category-price-container">
+            <span class="category-name">{{ item.category }}</span>
+            <span class="item-price pull-right">{{ item.price | currency }}</span>
+          </div>
 
 
           <!-- Button trigger modal for see more-->
@@ -73,4 +73,6 @@
       </div>
     </div>
    </div>
+
+</div>
 </div>

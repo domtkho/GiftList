@@ -18,7 +18,8 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
   $scope.loadWishList = ->
     $http.get("/lists.json")
       .success (data) ->
-        $scope.wish_lists = data
+        $scope.wish_lists = data[0].wanted_items
+        console.log $scope.wish_lists
       .error (data) ->
         console.log "Wish list error"
 

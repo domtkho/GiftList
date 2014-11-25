@@ -2,13 +2,45 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
-.navbar-default {
-  background-color:#778899;
-  background-image:none;
-}
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,300,100italic,300italic,400italic,500,500italic,700,700italic,900,900italic);
 
 body {
+  background: #F9F9F9;
   padding-top: 50px;
+  font-family: serif;
+}
+
+#navbar {
+  background-color: #00B9D1;
+  border: 0px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.26)
+}
+
+.navbar-default {
+  background-color: none;
+  border: none;
+
+  .navbar-brand {
+    font-size: 32px;
+    color: #FFFFFF;
+  }
+}
+
+input.search-bar {
+  height: 30px;
+  width: 310px;
+  border-radius: 15px;
+  border: none;
+  margin: 10px 15px;
+  padding-left: 10px;
+}
+
+ul.navbar-right {
+  padding-right: 30px;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #FFFFFF;
 }
 
 img.navbar-profile-thumbnail {
