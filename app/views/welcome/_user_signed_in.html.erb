@@ -71,15 +71,17 @@
       </div>
     </div>
 
+      <% if @friends_array[0] != nil %>
     <div class="col-md-2 sidebar-right">
       <h2 class="friend-title">Friends</h2>
-      <% @friends_array.each do |friend| %>
+        <% @friends_array.each do |friend| %>
         <div class="friend-container">
           <% if friend != nil %>
             <span><%= image_tag friend.image, {class: "friend-thumbnail"} %></span>
             <span class="friend-name"><%= friend['name'] %></span>
           <% end %>
         </div>
+        <% end %>
       <% end %>
     </div>
 
