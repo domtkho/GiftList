@@ -1,20 +1,27 @@
-<div class="friend-info-container">
-  <span><img ng-src="https://graph.facebook.com/{{user.uid}}/picture?width=300&height=300" class="friend-profile-image" alt="profile pic"></span>
-  <span class="friend-display-name">{{user.name}}</span>
+<div class="col-md-4 friend-wishlist-container">
+  <div class="friend-info-container">
+    <span><img ng-src="https://graph.facebook.com/{{user.uid}}/picture?width=300&height=300" class="friend-profile-image" alt="profile pic"></span>
+    <span class="friend-display-name">{{user.name}}</span>
+  </div>
+  <hr>
+  <p class="friends-wishlist-title">I want...</p>
+  <div ng-repeat="wanted_item in user.wanted_items" class="friend-wishlist-item">
+    <div class="friend-wishlist-item-priority">{{ wanted_item.priority }}</div>
+    <div class="friend-wishlist-item-name" ng-click="changeWantedItem(wanted_item.id)">{{ wanted_item.item.name }}</div>
+  </div>
 </div>
-<hr>
 
-<div class="row">
-  <div class="col-md-3 friend-wishlist-container">
-    <p class="friends-wishlist-title">I want...</p>
-    <div ng-repeat="wanted_item in user.wanted_items" class="friend-wishlist-item">
-        <div class="friend-wishlist-item-priority">{{ wanted_item.priority }}</div>
-        <div class="friend-wishlist-item-name">{{ wanted_item.item.name }}</div>
-      </div>
-    </div>
+<div class="col-md-8 friend-wanted-item-display">
+  <div class="item-image-container">
+    <img ng-src="{{ wanted_item['item']['image'] }}" class="item-image" alt="product-picture">
   </div>
-
-  <div class="col-md-9">
-
+  <div class="name-category-container">
+    <p class="item-name">{{ wanted_item['item']['name'] }}</p>
+    <p class="item-category">{{ wanted_item['item']['category'] }}</p>
   </div>
+  <div>
+    <h1 class="item-description-title">Description</h1>
+    <p class="item-description">{{ wanted_item['item']['description'] }}</p>
+  </div>
+  <hr>
 </div>

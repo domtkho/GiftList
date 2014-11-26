@@ -21,15 +21,29 @@ App.config([ '$routeProvider', '$locationProvider', ($routeProvider, $locationPr
 # ng-controller for Wish Lists
 App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope, $http, routeParams) ->
 
+  $scope.wanted_item = {}
+
   $scope.getList = () ->
     $http.get("/api/lists/#{routeParams['id']}.json")
       .success (data) ->
-        console.log data
         $scope.user = data
+        $scope.wanted_item = $scope.user['wanted_items'][0]
+        # console.log $scope.user
+        # console.log $scope.wanted_item
       .error (data) ->
         console.log " get user error"
 
   $scope.getList()
+
+
+  $scope.changeWantedItem = (wanted_item_id) ->
+    $http.get("/api/wanted_items/#{wanted_item_id}.json")
+      .success (data) ->
+        $scope.wanted_item = data
+        console.log $scope.wanted_item
+      .error (data) ->
+        console.log " get wanted item error"
+
 
   ])
 

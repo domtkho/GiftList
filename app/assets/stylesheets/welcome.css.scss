@@ -370,15 +370,50 @@ div.friend-wishlist-item-priority {
   text-align: center;
 }
 
+div.friend-wanted-item-display {
+  padding-top: 20px;
+}
+
 div.friend-wishlist-item-name {
   font-size: 18px;
   display: inline;
   padding: 5px;
 }
 
+div.item-image-container {
+  width: 100px;
+  // background-color: red;
+  display: inline-block;
+  text-align: center;
+}
 
+img.item-image {
+  height: 100px;
+}
 
+div.name-category-container {
+  display: inline-block;
+  margin-left: 10px;
+}
 
+p.item-name {
+  font-size: 24px;
+  margin: 0
+}
+
+p.item-category {
+  font-size: 18px;
+  margin: 0
+}
+
+h1.item-description-title {
+  font-size: 28px;
+}
+
+p.item-description {
+  height: 100px;
+  overflow: auto;
+}
 
 
 

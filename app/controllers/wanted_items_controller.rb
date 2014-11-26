@@ -1,5 +1,5 @@
 class WantedItemsController < ApplicationController
-  before_action :set_wanted_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_wanted_item, only: [:edit, :update, :destroy]
 
   # POST /api/wanted_items/submit.json
   def submit
@@ -28,6 +28,7 @@ class WantedItemsController < ApplicationController
   # GET /wanted_items/1
   # GET /wanted_items/1.json
   def show
+    @wanted_item = WantedItem.find(params[:id])
   end
 
   # GET /wanted_items/new
