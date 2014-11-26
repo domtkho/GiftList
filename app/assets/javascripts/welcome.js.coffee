@@ -44,6 +44,10 @@ App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope
       .error (data) ->
         console.log " get wanted item error"
 
+  $scope.postComment = ->
+    jsonObj = routeParams['comment']
+    console.log jsonObj
+
 
   ])
 
