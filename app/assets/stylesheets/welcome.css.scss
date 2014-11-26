@@ -324,3 +324,23 @@ img.item-display-image {
 .btn {
   border-radius: 0;
 }
+
+
+/*******   Wish List Details SECTION /
+/********************************************/
+
+div.friend-info-container {
+  padding-top: 20px;
+}
+
+span.friend-display-name {
+  font-size: 24px;
+  padding-left: 20px;
+}
+
+img.friend-profile-image {
+  height: 100px;
+  width: 100px;
+  border: 5px solid #FFC000;
+  border-radius: 20px;
+}

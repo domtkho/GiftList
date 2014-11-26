@@ -5,7 +5,6 @@ Rails.application.routes.draw do
       post  'submit'  , on: :collection
       get   'data'    , on: :collection
     end
-    resources :users
     resources :items
     resources :comments
     resources :lists
@@ -20,6 +19,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get '*path', to: 'welcome#index'
 
+  resources :users
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
