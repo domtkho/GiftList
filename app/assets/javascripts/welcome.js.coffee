@@ -4,29 +4,44 @@
 
 App = angular.module('myApp', ['ngRoute', 'templates'])
 
-App.config([ '$routeProvider', ($routeProvider)->
+# Setup AngularJS Routes
+App.config([ '$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
   $routeProvider
     .when('/',
+      templateUrl: "catalogue.html",
+      controller: 'GiftItemController'
+    ).when('/wishlist',
       templateUrl: "wish_list_details.html",
-      controller: 'TestCtrl'
+      controller: 'WishListController'
     )
 
+  # $locationProvider.html5Mode(true);
   console.log "I AM IN App.config"
 ])
 
+
+
+# ng-controller for wish lists
+App.controller("WishListController", ["$scope", "$http", ($scope, $http) ->
+
+  $scope.user = {name: "Dom"}
+
+  ])
+
+# ng-controller for Catalogue
 App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
 
   $scope.wish_lists = {}
 
   $scope.loadItems = ->
-    $http.get("/items.json")
+    $http.get("/api/items.json")
       .success (data) ->
         $scope.items = data
       .error (data) ->
         console.log "data.error"
 
   $scope.loadWishList = ->
-    $http.get("/lists.json")
+    $http.get("/api/lists.json")
       .success (data) ->
         $scope.wish_lists = data[0].wanted_items
       .error (data) ->
@@ -67,9 +82,6 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
         console.log $scope.items
       .error (data) ->
         console.log "Wish list error"
-
-  $scope.log = ->
-    console.log "HAHAHA"
 
   $scope.dragdrop = ->
     dropZoneOne = document.querySelector("#drop-target-one")
@@ -116,6 +128,5 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
 
   $scope.loadItems()
   $scope.loadWishList()
-  # $scope.test()
 ])
 

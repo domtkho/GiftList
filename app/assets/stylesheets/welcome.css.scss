@@ -185,6 +185,7 @@ html, body, .container-fluid, .row {
     z-index: 1000;
     background-color: #90A4AE;
     display: block;
+    overflow: auto;
     padding: 0;
     text-align: center;
   }
@@ -260,6 +261,13 @@ h2.friend-title {
   color: #FFFFFF;
   margin: 0;
   padding: 10px 0;
+  text-align: center;
+}
+
+div.see-more {
+  background-color: #FFFFFF;
+  margin-top: 3px;
+  padding: 10px 20px;
   text-align: center;
 }
 

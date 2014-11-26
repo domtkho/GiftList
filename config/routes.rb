@@ -5,6 +5,10 @@ Rails.application.routes.draw do
       post  'submit'  , on: :collection
       get   'data'    , on: :collection
     end
+    resources :users
+    resources :items
+    resources :comments
+    resources :lists
   end
 
 
@@ -14,6 +18,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
+  get '*path', to: 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -24,11 +29,7 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  resources :users
-  resources :items
   # get 'blah/:list_id' => 'items#blah'
-  resources :comments
-  resources :lists
   # resources :lists, only: [:index, :show, :create] do
   #   post  'submit'  , on: :collection
   #   get   'data'    , on: :collection
