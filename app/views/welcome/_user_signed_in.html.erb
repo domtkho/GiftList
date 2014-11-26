@@ -75,8 +75,10 @@
       <h2 class="friend-title">Friends</h2>
       <% @friends_array.each do |friend| %>
         <div class="friend-container">
-          <span><%= image_tag friend.image, {class: "friend-thumbnail"} %></span>
-          <span class="friend-name"><%= friend['name'] %></span>
+          <% if friend != nil %>
+            <span><%= image_tag friend.image, {class: "friend-thumbnail"} %></span>
+            <span class="friend-name"><%= friend['name'] %></span>
+          <% end %>
         </div>
       <% end %>
     </div>
