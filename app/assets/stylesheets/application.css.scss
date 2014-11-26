@@ -6,8 +6,13 @@
 
 body {
   background: #F9F9F9;
-  padding-top: 50px;
+  padding-top: 100px;
   font-family: serif;
+}
+
+#heading {
+  color:white;
+  padding-left:25px;
 }
 
 #navbar {
@@ -24,6 +29,11 @@ body {
     font-size: 32px;
     color: #FFFFFF;
   }
+}
+
+#navbar > ul:nth-child(1) > li {
+  padding-top:15px;
+  
 }
 
 input.search-bar {

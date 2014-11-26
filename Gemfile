@@ -20,6 +20,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
 gem 'omniauth-facebook'
 gem "koala", "~> 1.10.0rc"
+gem 'rest_client'
 
 gem "font-awesome-rails"
 # Use jquery as the JavaScript library

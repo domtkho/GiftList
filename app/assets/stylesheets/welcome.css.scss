@@ -183,7 +183,7 @@ html, body, .container-fluid, .row {
     top: 50px;
     bottom: 0;
     z-index: 1000;
-    background-color: #90A4AE;
+    background-color: #46A1AD;
     display: block;
     padding: 0;
     text-align: center;
@@ -202,7 +202,8 @@ img.sidebar-profile-image {
   width: 130px;
   border: 5px solid white;
   border-radius: 100px;
-  margin-top: 20px;
+  margin-top: 75px;
+
 }
 
 div.wish-list-container {
@@ -221,9 +222,11 @@ h2.wishlist-title {
 }
 
 div.item-container {
-  padding: 10px 20px;
-  margin-top: 3px;
+  padding: 15px 20px;
+  margin-top: 1px;
   background-color: #FFF;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 div.item-container:hover {
   background-color: #FCEFEF;

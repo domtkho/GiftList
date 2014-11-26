@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>GiftList</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
 </head>
 <body ng-app="myApp">
@@ -15,7 +15,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">WishCrowd  </a>
+      <h1 id="heading">WISHCROWD<h1>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
@@ -37,6 +37,6 @@
     <%= yield %>
   </div>
 
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
 </body>
 </html>
