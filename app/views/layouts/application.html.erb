@@ -2,9 +2,9 @@
 <html>
 <head>
   <title>GiftList</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
-  <!-- <base href="/"> -->
+  <base href="/">
   <script type="text/javascript">
     if (window.location.hash && window.location.hash == '#_=_') {
         if (window.history && history.pushState) {
@@ -55,6 +55,6 @@
     <%= yield %>
   </div>
 
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
 </body>
 </html>

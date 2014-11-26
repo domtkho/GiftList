@@ -1,1 +1,8 @@
-<h1>{{user.name}}</h1>
+<div><h1>{{user.name}}</h1></div>
+<img ng-src="https://graph.facebook.com/{{user.uid}}/picture?width=300&height=300" alt="profile pic">
+<div ng-repeat="wanted_item in user.wanted_items">
+  <div ng-repeat="item in wanted_item">
+    {{ item.name }}
+  </div>
+</div>
+

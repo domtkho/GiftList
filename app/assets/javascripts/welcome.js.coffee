@@ -10,20 +10,35 @@ App.config([ '$routeProvider', '$locationProvider', ($routeProvider, $locationPr
     .when('/',
       templateUrl: "catalogue.html",
       controller: 'GiftItemController'
-    ).when('/wishlist',
+    ).when('/wishlist/:id',
       templateUrl: "wish_list_details.html",
-      controller: 'GiftItemController'
+      controller: 'WishListController'
     )
 
-  # $locationProvider.html5Mode(true);
-  console.log "I AM IN App.config"
+  $locationProvider.html5Mode(true);
 ])
+
+# ng-controller for Wish Lists
+App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope, $http, routeParams) ->
+
+  $scope.user_id = routeParams['id']
+
+  $scope.getList = () ->
+    $http.get("/api/lists/#{$scope.user_id}.json")
+      .success (data) ->
+        console.log data
+        $scope.user = data
+      .error (data) ->
+        console.log " get user error"
+
+  $scope.getList()
+
+  ])
 
 
 # ng-controller for Catalogue
 App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
 
-  $scope.user = {}
   $scope.wish_lists = {}
 
   $scope.loadItems = ->

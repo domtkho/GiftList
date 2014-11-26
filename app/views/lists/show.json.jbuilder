@@ -1,1 +1,5 @@
-json.extract! @new_list, :id, :list_name, :user_id, :created_at, :updated_at
+json.extract! @list, :id, :user_id
+json.wanted_items @list.wanted_items do |wanted_item|
+  json.extract! wanted_item, :item
+end
+json.extract! @list_owner, :email, :name, :uid, :image

@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_list, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
 
   # GET /lists
@@ -11,6 +11,8 @@ class ListsController < ApplicationController
   # GET /lists/1
   # GET /lists/1.json
   def show
+    @list = List.find_by(user: params['id'])
+    @list_owner = @list.user
   end
 
   # GET /lists/new

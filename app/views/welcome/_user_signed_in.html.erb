@@ -19,7 +19,7 @@
           </div>
         </div>
 
-        <div class="see-more"><a ng-href="#/wishlist" ng-click="setUser()">Show list</a></div>
+        <div class="see-more"><a ng-href="/wishlist">Show list</a></div>
       </div>
 
     </div>
@@ -32,9 +32,9 @@
       <h2 class="friend-title">Friends</h2>
       <div ng-repeat="friend in friends">
         <div class="friend-container">
-          <div ng-if"friend" %>
+          <div ng-if"friend">
             <span><img ng-src="{{ friend.image }}" alt="friend profile image" class="friend-thumbnail"></span>
-            <span class="friend-name">{{ friend.name }}</span>
+            <span class="friend-name"><a ng-href="/wishlist/{{ friend.id }}">{{ friend.name }}</a></span>
           </div>
         </div>
       </div>
