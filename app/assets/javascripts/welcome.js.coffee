@@ -12,7 +12,7 @@ App.config([ '$routeProvider', '$locationProvider', ($routeProvider, $locationPr
       controller: 'GiftItemController'
     ).when('/wishlist',
       templateUrl: "wish_list_details.html",
-      controller: 'WishListController'
+      controller: 'GiftItemController'
     )
 
   # $locationProvider.html5Mode(true);
@@ -20,17 +20,10 @@ App.config([ '$routeProvider', '$locationProvider', ($routeProvider, $locationPr
 ])
 
 
-
-# ng-controller for wish lists
-App.controller("WishListController", ["$scope", "$http", ($scope, $http) ->
-
-  $scope.user = {name: "Dom"}
-
-  ])
-
 # ng-controller for Catalogue
 App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
 
+  $scope.user = {}
   $scope.wish_lists = {}
 
   $scope.loadItems = ->
@@ -126,7 +119,16 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
 
     return
 
+  $scope.loadFriends = ->
+    $http.get("/*path.json")
+      .success (data) ->
+        $scope.friends = data
+      .error (data) ->
+        console.log "friends data error"
+
+
   $scope.loadItems()
   $scope.loadWishList()
+  $scope.loadFriends()
 ])
 

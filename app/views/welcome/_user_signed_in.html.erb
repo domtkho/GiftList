@@ -19,7 +19,7 @@
           </div>
         </div>
 
-        <div class="see-more"><a ng-href="#/wishlist">Show list</a></div>
+        <div class="see-more"><a ng-href="#/wishlist" ng-click="setUser()">Show list</a></div>
       </div>
 
     </div>
@@ -30,14 +30,14 @@
 
     <div class="col-md-2 sidebar-right">
       <h2 class="friend-title">Friends</h2>
-      <% @friends_array.each do |friend| %>
+      <div ng-repeat="friend in friends">
         <div class="friend-container">
-          <% if friend != nil %>
-            <span><%= image_tag friend.image, {class: "friend-thumbnail"} %></span>
-            <span class="friend-name"><%= friend['name'] %></span>
-          <% end %>
+          <div ng-if"friend" %>
+            <span><img ng-src="{{ friend.image }}" alt="friend profile image" class="friend-thumbnail"></span>
+            <span class="friend-name">{{ friend.name }}</span>
+          </div>
         </div>
-      <% end %>
+      </div>
     </div>
 
   </div>
