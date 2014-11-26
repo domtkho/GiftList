@@ -187,6 +187,7 @@ html, body, .container-fluid, .row {
     display: block;
     padding: 0;
     text-align: center;
+    box-shadow: 0 0 4px rgba(0,0,0,.14),2px 4px 8px rgba(0,0,0,.28);
   }
   .sidebar-left {
     left: 0;
@@ -199,7 +200,7 @@ html, body, .container-fluid, .row {
 img.sidebar-profile-image {
   height: 130px;
   width: 130px;
-  border: 5px solid #E57373;
+  border: 5px solid white;
   border-radius: 100px;
   margin-top: 20px;
 }
@@ -222,7 +223,10 @@ h2.wishlist-title {
 div.item-container {
   padding: 10px 20px;
   margin-top: 3px;
-  background-color: #FFFFFF;
+  background-color: #FFF;
+}
+div.item-container:hover {
+  background-color: #FCEFEF;
 }
 
 #drop-target-one {
