@@ -2,7 +2,17 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-App = angular.module('myApp', [])
+App = angular.module('myApp', ['ngRoute', 'templates'])
+
+App.config([ '$routeProvider', ($routeProvider)->
+  $routeProvider
+    .when('/',
+      templateUrl: "wish_list_details.html",
+      controller: 'TestCtrl'
+    )
+
+  console.log "I AM IN App.config"
+])
 
 App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
 
@@ -19,7 +29,6 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
     $http.get("/lists.json")
       .success (data) ->
         $scope.wish_lists = data[0].wanted_items
-        console.log $scope.wish_lists
       .error (data) ->
         console.log "Wish list error"
 

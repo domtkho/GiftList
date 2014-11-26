@@ -25,13 +25,13 @@
 
 
     <div class="col-md-8 col-md-offset-2 main-section">
-
+      <div ng-view></div>
       <div ng-repeat="item in items | filter:searchText" ng-init="$last ? dragdrop() : null">
         <div class="col-md-4 product-tile">
           <div class="inner-tile list-drop" draggable="true" data-item="{{ item.id }}">
             <h2 class="product-name">{{ item.name }}</h2>
             <hr class="product-name-divider">
-            <div class="product-mask"><img src="{{ item.image }}" alt="item image" class="item-display-image"></div>
+            <div class="product-mask"><img ng-src="{{ item.image }}" alt="item image" class="item-display-image"></div>
             <div class="row category-price-container">
               <span class="category-name">{{ item.category }}</span>
               <span class="item-price pull-right">{{ item.price | currency }}</span>
@@ -55,7 +55,7 @@
                     <h2>{{ item.name }}</h2>
                     <h3>{{ item.category }}</h3>
                     <p>{{ item.price | currency }}</p>
-                    <img src="{{ item.image }}" alt="product image">
+                    <img ng-src="{{ item.image }}" alt="product image">
                     <p>{{ item.description }}</p>
 
                   </div>
