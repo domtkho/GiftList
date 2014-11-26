@@ -135,7 +135,7 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
     return
 
   $scope.loadFriends = ->
-    $http.get("/*path.json")
+    $http.get("/api/friends.json")
       .success (data) ->
         $scope.friends = data
       .error (data) ->

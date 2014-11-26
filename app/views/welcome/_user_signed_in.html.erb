@@ -31,11 +31,9 @@
     <div class="col-md-2 sidebar-right">
       <h2 class="friend-title">Friends</h2>
       <div ng-repeat="friend in friends">
-        <div ng-if="friend">
-          <div class="friend-container">
-            <span><img ng-src="{{ friend.image }}" alt="friend profile image" class="friend-thumbnail"></span>
-            <span class="friend-name"><a ng-href="/wishlist/{{ friend.id }}">{{ friend.name }}</a></span>
-          </div>
+        <div class="friend-container">
+          <span><img ng-src="{{ friend.image }}" alt="friend profile image" class="friend-thumbnail"></span>
+          <span class="friend-name"><a ng-href="/wishlist/{{ friend.id }}">{{ friend.name }}</a></span>
         </div>
       </div>
     </div>
