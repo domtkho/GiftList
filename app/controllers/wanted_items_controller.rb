@@ -3,6 +3,7 @@ class WantedItemsController < ApplicationController
 
   # POST /api/wanted_items/submit.json
   def submit
+
     item = Item.find(params[:item_id])
     list = current_user.lists.first
     if !(list.items.include? item)
@@ -16,7 +17,6 @@ class WantedItemsController < ApplicationController
         format.json { render json: @wanted_item.errors, status: :unprocessable_entity }
       end
     end
-
   end
 
   # GET /wanted_items

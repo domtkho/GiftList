@@ -344,8 +344,36 @@ img.friend-profile-image {
   border-radius: 20px;
 }
 
+p.friends-wishlist-title {
+  font-size: 24px;
+}
+
 div.friend-wishlist-container {
-  background-color: red;
+
+}
+
+div.friend-wishlist-item {
+  background-color: #F1B837;
+  border-top: 1px solid #F9F9F9;
+  border-bottom: 1px solid #F9F9F9;
+}
+
+div.friend-wishlist-item-priority {
+  height: 35px;
+  width: 37px;
+  background-color: #FF4081;
+  border-right: 2px solid #F9F9F9;
+  color: #FFFFFF;
+  font-size: 18px;
+  display: inline-block;
+  padding: 5px;
+  text-align: center;
+}
+
+div.friend-wishlist-item-name {
+  font-size: 18px;
+  display: inline;
+  padding: 5px;
 }
 
 

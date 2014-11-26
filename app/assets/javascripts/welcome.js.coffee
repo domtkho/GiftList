@@ -21,10 +21,8 @@ App.config([ '$routeProvider', '$locationProvider', ($routeProvider, $locationPr
 # ng-controller for Wish Lists
 App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope, $http, routeParams) ->
 
-  $scope.user_id = routeParams['id']
-
   $scope.getList = () ->
-    $http.get("/api/lists/#{$scope.user_id}.json")
+    $http.get("/api/lists/#{routeParams['id']}.json")
       .success (data) ->
         console.log data
         $scope.user = data

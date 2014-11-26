@@ -4,10 +4,17 @@
 </div>
 <hr>
 
-<div class="col-md-3 friend-wishlist-container">
-  <div ng-repeat="wanted_item in user.wanted_items" class="friend-wishlist-item">
-      {{ wanted_item.prority }}
-      {{ wanted_item.item.name }}
+<div class="row">
+  <div class="col-md-3 friend-wishlist-container">
+    <p class="friends-wishlist-title">I want...</p>
+    <div ng-repeat="wanted_item in user.wanted_items" class="friend-wishlist-item">
+        <div class="friend-wishlist-item-priority">{{ wanted_item.priority }}</div>
+        <div class="friend-wishlist-item-name">{{ wanted_item.item.name }}</div>
+      </div>
     </div>
+  </div>
+
+  <div class="col-md-9">
+
   </div>
 </div>

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-  # get '*path', to: 'welcome#index'
+  get '*path', to: 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -30,11 +30,6 @@ Rails.application.routes.draw do
   #   resources :products
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :users
-  # get 'blah/:list_id' => 'items#blah'
-  # resources :lists, only: [:index, :show, :create] do
-  #   post  'submit'  , on: :collection
-  #   get   'data'    , on: :collection
-  # end
 
   # Example resource route with options:
   #   resources :products do
