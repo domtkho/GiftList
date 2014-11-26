@@ -229,15 +229,14 @@ div.item-container {
   margin-right: 10px;
 }
 div.item-container:hover {
-  background-color: #FCEFEF;
+  background-color: rgba(255, 255, 255, 0.41);
 }
 
 #drop-target-one {
   color: #FFFFFF;
   font-size: 18px;
-  border: 3px dashed #FFFFFF;
   margin: 20px 0;
-  padding:2em 2em;
+  padding:1em 1em;
   text-align:center
 }
 
