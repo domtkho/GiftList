@@ -29,6 +29,19 @@ class WantedItemsController < ApplicationController
     @comments = @wanted_item.comments
   end
 
+  def updatePriority
+    @wanted_item = WantedItem.find(params[:id])
+    @wanted_item.update(priority: params[:priority])
+    respond_to do |format|
+      if @wanted_item.save
+        format.json { render :show, status: :created, location: @wanted_item }
+      else
+        format.json { render json: @wanted_item.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+
   # GET /wanted_items
   # GET /wanted_items.json
   def index

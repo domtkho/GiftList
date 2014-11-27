@@ -6,10 +6,13 @@ Rails.application.routes.draw do
       post  'submit'              , on: :collection
       get   'contributionData'    , on: :member
       get   'commentData'         , on: :member
+      post  'updatePriority'      , on: :member
     end
     resources :items
     resources :comments
-    resources :lists
+    resources :lists do
+      get   'getMyList'           , on: :member
+    end
     resources :contributions
     get 'friends' => 'welcome#friends'
     get 'currentUser' => 'lists#getCurrentUser'

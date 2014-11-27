@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20141127044216) do
     t.integer  "item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "priority"
+    t.integer  "priority",   default: 3
   end
 
 end

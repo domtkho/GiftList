@@ -5,8 +5,12 @@ class ListsController < ApplicationController
   def getCurrentUser
     @current_user = current_user
     @wanted_items = current_user.lists.first.wanted_items
+    @list = current_user.lists.first
   end
 
+  def getMyList
+    @my_list = List.find(params[:id])
+  end
 
   # GET /lists
   # GET /lists.json

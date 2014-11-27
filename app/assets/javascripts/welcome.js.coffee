@@ -42,6 +42,7 @@ App.controller("MyWishListController", ["$scope", "$http", "$routeParams", ($sco
       .success (data) ->
         $scope.current_user = data
         $scope.wanted_item = $scope.current_user['wanted_items'][0]
+        $scope.getMyList()
         $scope.retrieveContribution()
         $scope.retrieveComments()
       .error (data) ->
@@ -55,6 +56,23 @@ App.controller("MyWishListController", ["$scope", "$http", "$routeParams", ($sco
         $scope.retrieveComments()
       .error (data) ->
         console.log " get wanted item error"
+
+  $scope.adjustPriority = (priority, wanted_item_id) ->
+    jsonObj = { priority: priority }
+    jsonObj[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content')
+    $http.post("/api/wanted_items/#{wanted_item_id}/updatePriority.json", jsonObj)
+      .success (data) ->
+        $scope.getMyList()
+        console.log "updated priority"
+      .error (data) ->
+        console.log "update priority error"
+
+  $scope.getMyList = () ->
+    $http.get("/api/lists/#{$scope.current_user.lists[0].id}/getMyList.json")
+      .success (data) ->
+        $scope.myList = data
+      .error (data) ->
+        console.log " get user error"
 
 
   # retrieveContribution retrieves the array of contributors and the amount
