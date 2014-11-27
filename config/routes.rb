@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :lists
     resources :contributions
     get 'friends' => 'welcome#friends'
+    get 'currentUser' => 'lists#getCurrentUser'
   end
 
 
@@ -21,7 +22,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-  # get '*path', to: 'welcome#index'
+  get '*path', to: 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

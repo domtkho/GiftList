@@ -364,6 +364,16 @@ button.close {
 /*******   Wish List Details SECTION /
 /********************************************/
 
+div.empty-wishlist {
+  text-align: center;
+  padding: 50px 0;
+  background-color: #FFFFFF;
+
+  h1 {
+    margin: 0;
+  }
+}
+
 div.friend-info-container {
   padding-top: 20px;
 }
@@ -418,22 +428,23 @@ div.friend-wishlist-item-name {
 
 div.top-container {
   background-color: #FFFFFF;
-  padding: 10px;
+  padding: 20px 0;
 }
 
 div.item-image-container {
-  width: 150px;
-  display: inline-block;
+  height: 120px;
   text-align: center;
 }
 
 img.item-image {
-  height: 150px;
+  height: 120px;
 }
 
 div.name-category-container {
-  display: inline-block;
-  margin-left: 10px;
+  // margin-left: 10px;
+  margin: 0 auto;
+  text-align: center;
+
 }
 
 p.item-name {
@@ -446,17 +457,23 @@ p.item-category {
   margin: 0
 }
 
+div.item-description-container {
+  // display: inline-block;
+}
+
 h1.item-description-title {
   font-size: 24px;
 }
 
 p.item-description {
-  height: 100px;
+  height: 120px;
+  margin: 0;
   overflow: auto;
 }
 
 textarea.comment-textarea {
   resize: none;
+  border-radius: 0;
 }
 
 h1.comments {
@@ -473,26 +490,84 @@ h1.comments {
   max-width:75%;
 }
 
+div.contribute-section {
+  text-align: center;
+}
+
+.progress {
+  clear: both;
+}
+
+h1.contribute-title {
+  font-size: 20px;
+  padding-left: 15px;
+}
+
 div.contributors-container {
   display: inline-block;
   margin-right: 10px;
 }
 
+input.contribute-input {
+  border-radius: 0;
+}
+
 img.contributor-thumbnail {
   height: 50px;
   width: 50px;
-  border: 2px solid #FFFFFF;
+  border: 3px solid #ff4081;
   border-radius: 30px;
 }
 
 p.price,
 p.total-contribution {
-  font-size: 24px;
+  font-size: 18px;
+  text-align: left;
   span {
     padding-left: 20px;
   }
 
 }
+
+div.comment-thumbnail-container {
+  text-align: center;
+  clear: both;
+}
+
+img.comment-thumbnail-image {
+  border: 3px solid #f1b837;
+  border-radius: 10px;
+}
+
+div.preview {
+  text-align: center;
+  font-weight: 500;
+}
+
+div.comment-text-container {
+  display: inline;
+  margin-bottom: 20px;
+  min-height: 80px;
+  // background-color: #FFFFFF;
+
+  p {
+    margin-left: 10px;
+  }
+
+  p.commenter-name {
+    color: #009ACE;
+    font-weight: 500;
+
+    span {
+      font-weight: 100;
+      font-style: italic;
+      color: #000000;
+    }
+  }
+
+}
+
+
 
 #animated-text {
   position:absolute;

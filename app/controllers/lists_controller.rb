@@ -2,6 +2,11 @@ class ListsController < ApplicationController
   before_action :set_list, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
 
+  def getCurrentUser
+    @current_user = current_user
+  end
+
+
   # GET /lists
   # GET /lists.json
   def index
@@ -13,6 +18,7 @@ class ListsController < ApplicationController
   def show
     @list = List.find_by(user: params['id'])
     @list_owner = @list.user
+    @current_user = current_user
   end
 
   # GET /lists/new

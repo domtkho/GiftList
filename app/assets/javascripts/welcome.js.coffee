@@ -10,7 +10,7 @@ dropAnimation = () ->
   if $('#animated-text').length < 1
     $('#drop-target-one').append(dropText)
   $('#animated-text').addClass("animated fadeOutUp")
-  setTimeout ( -> 
+  setTimeout ( ->
     $('#animated-text').remove()), 1000
 
 
@@ -29,12 +29,19 @@ App.config([ '$routeProvider', '$locationProvider', ($routeProvider, $locationPr
 ])
 
 # ng-controller for Wish Lists
-App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope, $http, routeParams) ->
+App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope, $http, $routeParams) ->
 
   $scope.wanted_item = {}
 
+  $scope.getCurrentUser = () ->
+    $http.get("/api/currentUser.json")
+      .success (data) ->
+        $scope.current_user = data
+      .error (data) ->
+        console.log " current user error"
+
   $scope.getList = () ->
-    $http.get("/api/lists/#{routeParams['id']}.json")
+    $http.get("/api/lists/#{$routeParams['id']}.json")
       .success (data) ->
         $scope.user = data
         $scope.wanted_item = $scope.user['wanted_items'][0]
@@ -52,12 +59,10 @@ App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope
       .error (data) ->
         console.log " get wanted item error"
 
-  $scope.postComment = ->
-    jsonObj = routeParams['comment']
-
   # makeContribution
   $scope.makeContribution = ->
     jsonObj = { amount: $scope.contribution.amount, wanted_item_id: $scope.wanted_item.id }
+    console.log jsonObj
     jsonObj[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content')
     $http.post("/api/contributions.json", jsonObj)
       .success (data) ->
@@ -76,7 +81,6 @@ App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope
     $http.post("/api/contributions.json", jsonObj)
       .success (data) ->
         console.log "Completed contribution!"
-        $scope.contribution.amount = ""
         $scope.retrieveContribution()
       .error (data) ->
         console.log "contribution error"
@@ -106,6 +110,7 @@ App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope
     $http.post("/api/comments.json", jsonObj)
       .success (data) ->
         console.log "comment posted"
+        $scope.comment = ""
         $scope.retrieveComments()
       .error (data) ->
         console.log "contribution error"
@@ -119,6 +124,7 @@ App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope
 
 
   $scope.getList()
+  $scope.getCurrentUser()
 
   ])
 
