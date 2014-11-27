@@ -10,6 +10,8 @@ dropAnimation = () ->
   if $('#animated-text').length < 1
     $('#drop-target-one').append(dropText)
   $('#animated-text').addClass("animated fadeOutUp")
+  setTimeout ( -> 
+    $('#animated-text').remove()), 1000
 
 
 # Setup AngularJS Routes
