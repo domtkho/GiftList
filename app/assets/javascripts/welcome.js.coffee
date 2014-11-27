@@ -32,7 +32,7 @@ App.config([ '$routeProvider', '$locationProvider', ($routeProvider, $locationPr
 ])
 
 
-# ng-controller for Wish Lists
+# ng-controller for My Wish Lists
 App.controller("MyWishListController", ["$scope", "$http", "$routeParams", ($scope, $http, $routeParams) ->
 
   $scope.wanted_item = {}
@@ -118,7 +118,6 @@ App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope
         $scope.wanted_item = $scope.user['wanted_items'][0]
         $scope.retrieveContribution()
         $scope.retrieveComments()
-        $scope.getList()
       .error (data) ->
         console.log " get user error"
 
