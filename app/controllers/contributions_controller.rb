@@ -22,12 +22,14 @@ class ContributionsController < ApplicationController
 
   def create
     @user_id = current_user.id
-    @all_contributors = WantedItem.find(params[:wanted_item_id]).contributions.pluck('user_id')
+    @wanted_item_id = params[:wanted_item_id]
+    @all_contributors = WantedItem.find(@wanted_item_id).contributions.pluck('user_id')
     if @all_contributors.include? @user_id
-      @old_amount = Contribution.find_by(user_id: @user_id).amount
+      @contribution_id = WantedItem.find(@wanted_item_id).contributions.find_by(user_id: @user_id).id
+      @old_amount = Contribution.find(@contribution_id).amount
       @new_amount = @old_amount + params[:amount]
-      WantedItem.find(params[:wanted_item_id]).contributions.find_by(user_id: @user_id).update(amount: @new_amount)
-      @contribution = WantedItem.find(params[:wanted_item_id]).contributions.find_by(user_id: @user_id)
+      WantedItem.find(@wanted_item_id).contributions.find_by(user_id: @user_id).update(amount: @new_amount)
+      @contribution = WantedItem.find(@wanted_item_id).contributions.find_by(user_id: @user_id)
     else
       @contribution = Contribution.new({user_id: @user_id, wanted_item_id: params[:wanted_item_id], amount: params[:amount]})
     end

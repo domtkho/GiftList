@@ -52,47 +52,57 @@ App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope
 
   $scope.postComment = ->
     jsonObj = routeParams['comment']
-    console.log jsonObj
 
+  # makeContribution
   $scope.makeContribution = ->
-    # console.log $scope.contribution
     jsonObj = { amount: $scope.contribution.amount, wanted_item_id: $scope.wanted_item.id }
     jsonObj[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content')
-    console.log jsonObj
     $http.post("/api/contributions.json", jsonObj)
       .success (data) ->
-        $scope.retrieveContribution()
         $scope.contribution.amount = ""
+        $scope.retrieveContribution()
       .error (data) ->
         console.log "contribution error"
 
+
+  # COMPLETE CONTRIBUTION BUG!@@
+
+  #completeContribution
+  $scope.completeContribution = ->
+    jsonObj = { amount: (Math.round($scope.remainingContribution * 100) / 100), wanted_item_id: $scope.wanted_item.id }
+    jsonObj[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content')
+    $http.post("/api/contributions.json", jsonObj)
+      .success (data) ->
+        console.log "Completed contribution!"
+        $scope.contribution.amount = ""
+        $scope.retrieveContribution()
+      .error (data) ->
+        console.log "contribution error"
+
+
+  # retrieveContribution retrieves the array of contributors and the amount
   $scope.retrieveContribution = ->
     $http.get("api/wanted_items/#{$scope.wanted_item.id}/contributionData.json")
       .success (data) ->
-        $scope.contributors = data
-        console.log $scope.contributors
+        $scope.contributors = data   # Array of contributors and amount
         $scope.showTotalContribution()
-        $scope.calculateRemaining()
-        $scope.calculateRemainingPercentage()
       .error (data) ->
         console.log "contribution retrieve error"
 
+  # calculates the latest total contribution
   $scope.showTotalContribution = ->
     $scope.totalContribution = 0
     for contribution in $scope.contributors
       $scope.totalContribution += contribution.amount
-    $scope.totalContribution
-
-  $scope.calculateRemaining = ->
+    console.log "Total is now : #{$scope.totalContribution}"
     $scope.remainingContribution = $scope.wanted_item.item.price - $scope.totalContribution
-
-  $scope.calculateRemainingPercentage = ->
+    console.log "remaining: #{$scope.remainingContribution}"
     $scope.remainingPercentage = Math.floor(($scope.totalContribution / $scope.wanted_item.item.price ) * 100)
+
 
   $scope.postComment = (comment) ->
     jsonObj = { content: comment, wanted_item_id: $scope.wanted_item.id }
     jsonObj[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content')
-    console.log jsonObj
     $http.post("/api/comments.json", jsonObj)
       .success (data) ->
         console.log "comment posted"
@@ -104,7 +114,6 @@ App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope
     $http.get("api/wanted_items/#{$scope.wanted_item.id}/commentData.json")
       .success (data) ->
         $scope.comments = data
-        console.log data
       .error (data) ->
         console.log "comments retrieve error"
 
@@ -147,12 +156,10 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
       .error (data) ->
         console.log "data error"
 
-  $scope.removeItemFromWishList = (itemId) ->
-    jsonObj = { "item_id": itemId }
-    jsonObj[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content')
-
-    $http.post('api/wanted_items/destroy.json', jsonObj)
+  $scope.removeItemFromWishList = (wanted_item_id) ->
+    $http.delete("api/wanted_items/#{wanted_item_id}.json")
       .success (data) ->
+        console.log "Item destroyed"
         $scope.loadWishList()
       .error (data) ->
         console.log "data error"

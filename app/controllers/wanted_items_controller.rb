@@ -1,5 +1,5 @@
 class WantedItemsController < ApplicationController
-  before_action :set_wanted_item, only: [:edit, :update, :destroy]
+  before_action :set_wanted_item, only: [:edit, :update]
 
   # POST /api/wanted_items/submit.json
   def submit
@@ -27,15 +27,6 @@ class WantedItemsController < ApplicationController
   def commentData
     @wanted_item = WantedItem.find(params[:id])
     @comments = @wanted_item.comments
-  end
-
-
-  def destroy
-    @wanted_item.destroy
-    respond_to do |format|
-      format.json { redirect_to wanted_items_url, notice: 'Item was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   # GET /wanted_items
@@ -92,10 +83,10 @@ class WantedItemsController < ApplicationController
   # DELETE /wanted_items/1
   # DELETE /wanted_items/1.json
   def destroy
-    @wanted_item.destroy
+    @wanted_item = WantedItem.find(params[:id]).destroy
     respond_to do |format|
-      format.html { redirect_to wanted_items_url, notice: 'Wanted item was successfully destroyed.' }
       format.json { head :no_content }
+      # format.json { redirect_to wanted_items_url, notice: 'Item was successfully destroyed.' }
     end
   end
 
@@ -107,6 +98,6 @@ class WantedItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wanted_item_params
-      params.require(:wanted_item).permit(:user_id)
+      params.require(:wanted_item).permit(:user_id, :wanted_item_id)
     end
 end

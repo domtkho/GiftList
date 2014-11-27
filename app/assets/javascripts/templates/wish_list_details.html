@@ -49,9 +49,13 @@
   <form ng-submit="makeContribution(contribution)">
     <div>Maximum contribution: <span>{{ remainingContribution | currency }}</span></div>
     <div>
-      Contribution Amount:<input type="number" step="0.01" max="{{ remainingContribution }}" ng-model="contribution.amount">
+      Contribution Amount:<input type="number" step="0.01" min="0" max="{{ remainingContribution }}" placeholder="5" ng-model="contribution.amount">
       <button type="submit" class="btn btn-primary make-contribution">Make contribution</button>
     </div>
+  </form>
+
+  <form ng-submit="completeContribution()">
+      <button type="submit" class="btn btn-primary make-contribution">Complete contribution</button>
   </form>
 
   <div ng-repeat="comment in comments">
