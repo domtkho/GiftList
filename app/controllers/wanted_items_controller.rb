@@ -9,12 +9,12 @@ class WantedItemsController < ApplicationController
     if !(list.items.include? item)
       @wanted_item = WantedItem.create({user_id: current_user.id, item_id: params[:item_id], list_id: current_user.lists.first.id})
       list.wanted_items << @wanted_item
-    end
-    respond_to do |format|
-      if @wanted_item.save
+      respond_to do |format|
         format.json { render :show, status: :created, location: @wanted_item }
-      else
-        format.json { render json: @wanted_item.errors, status: :unprocessable_entity }
+      end
+    else
+      respond_to do |format|
+        format.json { head :ok }
       end
     end
   end

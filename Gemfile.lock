@@ -32,7 +32,6 @@ GEM
       railties (>= 3.1)
       sprockets
       tilt
-    angularjs-rails (1.3.2)
     arel (5.0.1.20140414130214)
     autoprefixer-rails (4.0.0.1)
       execjs
@@ -215,7 +214,6 @@ PLATFORMS
 
 DEPENDENCIES
   angular-rails-templates
-  angularjs-rails (~> 1.3)
   autoprefixer-rails
   better_errors
   binding_of_caller

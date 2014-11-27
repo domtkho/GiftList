@@ -6,6 +6,7 @@
 
       <div class="wish-list-container">
         <h2 class="wishlist-title">Wish List</h2>
+        <div class="btn btn-success" ng-click="loadWishList()">Refresh</div>
         <div ng-repeat="wanted_item in wish_lists">
           <div class="item-container">
             <span>{{ wanted_item.item.name }}</span>
