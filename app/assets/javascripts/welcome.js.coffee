@@ -3,6 +3,14 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 App = angular.module('myApp', ['ngRoute', 'templates'])
+dropAnimation = () ->
+  dropText = document.createElement("span")
+  dropText.id = "animated-text"
+  dropText.innerHTML = "Item Added!"
+  if $('#animated-text').length < 1
+    $('#drop-target-one').append(dropText)
+  $('#animated-text').addClass("animated fadeOutUp")
+
 
 # Setup AngularJS Routes
 App.config([ '$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
@@ -156,6 +164,7 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
       $scope.addItemToWishList($scope.selectedItem)
       elementDragged = null
       $scope.loadWishList()
+      dropAnimation()
       false
 
     return

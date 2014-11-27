@@ -447,7 +447,21 @@ h1.comments {
   font-size: 24px;
 }
 
+#dd-elements {
+  -webkit-animation-delay: 2s;
+  -webkit-animation-iteration-count:1;
+  // -webkit-animation-duration:1s;
+}
 
+#animated-text {
+  position:absolute;
+  font-size:3em;
+  color:red;
+  left:5%;
+  top:0.5%;
+}
 
-
-
+//Drag & Drop
+.over {
+  background-color:rgba(255, 255, 255, 0.41);
+}
