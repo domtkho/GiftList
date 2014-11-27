@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-App = angular.module('myApp', ['ngRoute', 'templates'])
+App = angular.module('myApp', ['ngRoute', 'templates', 'ngAnimate'])
 dropAnimation = () ->
   dropText = document.createElement("span")
   dropText.id = "animated-text"
