@@ -20,11 +20,34 @@
     <p class="item-name">{{ wanted_item['item']['name'] }}</p>
     <p class="item-category">{{ wanted_item['item']['category'] }}</p>
   </div>
+  <div class="name-category-container pull-right">
+    <p>Price:<span class="pull-right">{{ wanted_item.item.price | currency }}</span></p>
+    <p>Total contribution:<span class="pull-right">{{ totalContribution | currency }}</span></p>
+    <!-- <div>Needs:<span>{{ remainingContribution | currency }}</span></div> -->
+  </div>
+
+  <div class="progress">
+    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{ remainingPercentage }}%">
+    {{ remainingPercentage }}%
+  </div>
+
+</div>
+
   <div>
     <h1 class="item-description-title">Description</h1>
     <p class="item-description">{{ wanted_item['item']['description'] }}</p>
   </div>
+
+  <div ng-repeat="contributor in contributors" class="contributors-container">
+    <img ng-src="{{ contributor.user.image }}" alt="contributors" class="contributor-thumbnail">
+  </div>
+
   <hr>
+
+  <form ng-submit="makeContribution(contribution)">
+    Contribution Amount:<input type="number" step="0.01" max="{{ remainingContribution }}" ng-model="contribution.amount">
+    <button type="submit" class="btn btn-primary make-contribution">Make contribution</button>
+  </form>
 
   <h1 class="comments">Comments</h1>
   <div ng-bind="comment"></div>

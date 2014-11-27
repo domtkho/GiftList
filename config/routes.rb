@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
 
+
   scope :api do
     resources :wanted_items, only: [:index, :show, :create, :destroy] do
-      post  'submit'  , on: :collection
-      get   'data'    , on: :collection
+      post  'submit'              , on: :collection
+      get   'contributionData'    , on: :member
     end
     resources :items
     resources :comments
     resources :lists
+    resources :contributions
     get 'friends' => 'welcome#friends'
   end
 
@@ -18,7 +20,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-  # get '*path', to: 'welcome#index'
+  get '*path', to: 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
