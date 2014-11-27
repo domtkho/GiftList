@@ -19,6 +19,12 @@ class WantedItemsController < ApplicationController
     end
   end
 
+  def contributionData
+    @wanted_item = WantedItem.find(params[:id])
+    @contributions = @wanted_item.contributions
+  end
+
+
   def destroy
     @wanted_item.destroy
     respond_to do |format|

@@ -447,10 +447,32 @@ h1.comments {
   font-size: 24px;
 }
 
+
 #dd-elements {
   -webkit-animation-delay: 2s;
   -webkit-animation-iteration-count:1;
   // -webkit-animation-duration:1s;
+}
+
+div.contributors-container {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+img.contributor-thumbnail {
+  height: 50px;
+  width: 50px;
+  border: 2px solid #FFFFFF;
+  border-radius: 30px;
+}
+
+p.price,
+p.total-contribution {
+  font-size: 24px;
+  span {
+    padding-left: 20px;
+  }
+
 }
 
 #animated-text {
