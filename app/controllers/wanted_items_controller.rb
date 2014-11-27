@@ -24,6 +24,11 @@ class WantedItemsController < ApplicationController
     @contributions = @wanted_item.contributions
   end
 
+  def commentData
+    @wanted_item = WantedItem.find(params[:id])
+    @comments = @wanted_item.comments
+  end
+
 
   def destroy
     @wanted_item.destroy

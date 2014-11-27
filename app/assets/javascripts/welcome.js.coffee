@@ -37,6 +37,7 @@ App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope
         $scope.user = data
         $scope.wanted_item = $scope.user['wanted_items'][0]
         $scope.retrieveContribution()
+        $scope.retrieveComments()
       .error (data) ->
         console.log " get user error"
 
@@ -45,6 +46,7 @@ App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope
       .success (data) ->
         $scope.wanted_item = data
         $scope.retrieveContribution()
+        $scope.retrieveComments()
       .error (data) ->
         console.log " get wanted item error"
 
@@ -86,6 +88,26 @@ App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope
 
   $scope.calculateRemainingPercentage = ->
     $scope.remainingPercentage = Math.floor(($scope.totalContribution / $scope.wanted_item.item.price ) * 100)
+
+  $scope.postComment = (comment) ->
+    jsonObj = { content: comment, wanted_item_id: $scope.wanted_item.id }
+    jsonObj[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content')
+    console.log jsonObj
+    $http.post("/api/comments.json", jsonObj)
+      .success (data) ->
+        console.log "comment posted"
+        $scope.retrieveComments()
+      .error (data) ->
+        console.log "contribution error"
+
+  $scope.retrieveComments = ->
+    $http.get("api/wanted_items/#{$scope.wanted_item.id}/commentData.json")
+      .success (data) ->
+        $scope.comments = data
+        console.log data
+      .error (data) ->
+        console.log "comments retrieve error"
+
 
   $scope.getList()
 

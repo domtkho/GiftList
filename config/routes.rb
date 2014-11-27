@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :wanted_items, only: [:index, :show, :create, :destroy] do
       post  'submit'              , on: :collection
       get   'contributionData'    , on: :member
+      get   'commentData'         , on: :member
     end
     resources :items
     resources :comments
