@@ -23,10 +23,15 @@ App.config([ '$routeProvider', '$locationProvider', ($routeProvider, $locationPr
     ).when('/wishlist/:id',
       templateUrl: "wish_list_details.html",
       controller: 'WishListController'
+    ).when('/my_wish_list',
+      templateUrl: "my_wish_list.html",
+      controller: 'WishListController'
     )
 
   $locationProvider.html5Mode(true);
 ])
+
+
 
 # ng-controller for Wish Lists
 App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope, $http, $routeParams) ->
@@ -47,6 +52,7 @@ App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope
         $scope.wanted_item = $scope.user['wanted_items'][0]
         $scope.retrieveContribution()
         $scope.retrieveComments()
+        $scope.getList()
       .error (data) ->
         console.log " get user error"
 
@@ -70,9 +76,6 @@ App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope
         $scope.retrieveContribution()
       .error (data) ->
         console.log "contribution error"
-
-
-  # COMPLETE CONTRIBUTION BUG!@@
 
   #completeContribution
   $scope.completeContribution = ->
@@ -169,16 +172,6 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
         $scope.loadWishList()
       .error (data) ->
         console.log "data error"
-
-  # $scope.addNewWishList = ->
-  #   jsonObj = {"list_name": $scope.newListName}
-  #   jsonObj[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content')
-
-  #   $http.post('lists.json', jsonObj)
-  #     .success (data) ->
-  #       $scope.loadWishList()
-  #     .error (data) ->
-  #       console.log "data error"
 
   $scope.showList = ->
     $http.get("/lists.json")

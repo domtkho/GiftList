@@ -4,6 +4,7 @@ class ListsController < ApplicationController
 
   def getCurrentUser
     @current_user = current_user
+    @wanted_items = current_user.lists.first.wanted_items
   end
 
 
