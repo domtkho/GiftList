@@ -6,8 +6,10 @@
       <div class="wish-list-container">
         <h2 class="wishlist-title"><%= current_user.name.split(" ")[0]%>s List</h2>
         <div ng-repeat="wanted_item in wish_lists">
+        <button type="button" ng-click="removeItemFromWishList(wanted_item.id)" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
           <div class="item-container">
             <span>{{ wanted_item.item.name }}</span>
+
             <span class="pull-right">{{ wanted_item.item.price | currency }}</span>
           </div>
         </div>

@@ -37,6 +37,16 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
       .error (data) ->
         console.log "data error"
 
+  $scope.removeItemFromWishList = (itemId) ->
+    jsonObj = { "item_id": itemId }
+    jsonObj[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content')
+
+    $http.post('api/wanted_items/destroy.json', jsonObj)
+      .success (data) ->
+        $scope.loadWishList()
+      .error (data) ->
+        console.log "data error"
+
   $scope.addNewWishList = ->
     jsonObj = {"list_name": $scope.newListName}
     jsonObj[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content')

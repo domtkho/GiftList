@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   scope :api do
-    resources :wanted_items, only: [:index, :show, :create] do
+    resources :wanted_items, only: [:index, :show, :create, :destroy] do
       post  'submit'  , on: :collection
       get   'data'    , on: :collection
     end

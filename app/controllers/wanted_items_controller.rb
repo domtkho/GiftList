@@ -19,6 +19,14 @@ class WantedItemsController < ApplicationController
 
   end
 
+  def destroy
+    @wanted_item.destroy
+    respond_to do |format|
+      format.json { redirect_to wanted_items_url, notice: 'Item was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   # GET /wanted_items
   # GET /wanted_items.json
   def index
