@@ -1,5 +1,6 @@
 <div class="col-md-4 friend-wishlist-container">
   <p class="friends-wishlist-title">Selected Items</p>
+  <p class="friends-wishlist-tagline">Click on number to adjust priority if needed</p>
   <div ng-repeat="wanted_item in myList.wanted_items | orderBy:'priority':'reverse'" class="friend-wishlist-item">
     <div class="friend-wishlist-item-priority" data-toggle="modal" data-target="#priority-{{wanted_item.id}}">{{ wanted_item.priority }}</div>
     <div class="friend-wishlist-item-name" ng-click="changeWantedItem(wanted_item.id)">{{ wanted_item.item.name }}</div>
@@ -14,11 +15,11 @@
           </div>
           <div class="modal-body">
             <div class="row priority-btn-container">
-              <div ng-click="adjustPriority(1, wanted_item.id)" class="set-priority">1</div>
-              <div ng-click="adjustPriority(2, wanted_item.id)" class="set-priority">2</div>
-              <div ng-click="adjustPriority(3, wanted_item.id)" class="set-priority">3</div>
-              <div ng-click="adjustPriority(4, wanted_item.id)" class="set-priority">4</div>
-              <div ng-click="adjustPriority(5, wanted_item.id)" class="set-priority">5</div>
+              <div ng-click="adjustPriority(1, wanted_item.id)" class="btn set-priority">1</div>
+              <div ng-click="adjustPriority(2, wanted_item.id)" class="btn set-priority">2</div>
+              <div ng-click="adjustPriority(3, wanted_item.id)" class="btn set-priority">3</div>
+              <div ng-click="adjustPriority(4, wanted_item.id)" class="btn set-priority">4</div>
+              <div ng-click="adjustPriority(5, wanted_item.id)" class="btn set-priority">5</div>
             </div>
           </div>
           <div class="modal-footer">
