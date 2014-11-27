@@ -52,6 +52,7 @@ App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope
     $http.post("/api/contributions.json", jsonObj)
       .success (data) ->
         $scope.retrieveContribution()
+        $scope.contribution.amount = ""
       .error (data) ->
         console.log "contribution error"
 
