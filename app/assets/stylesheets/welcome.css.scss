@@ -11,7 +11,7 @@ body,
 html {
     width: 100%;
     height: 100%;
-    background-color:#047180;
+    background-color:#F7F7F7;
 }
 
 body,
@@ -106,6 +106,10 @@ h6 {
     margin-bottom: 30px;
 }
 
+a {
+  color: #333;
+}
+
 .section-heading-spacer {
     float: left;
     width: 200px;
@@ -186,7 +190,7 @@ html, body, .container-fluid, .row {
     top: 50px;
     bottom: 0;
     z-index: 1000;
-    background-color: #46A1AD;
+    background-color: #ECF0F0;
     display: block;
     overflow: auto;
     padding: 0;
@@ -219,7 +223,7 @@ div.wish-list-container {
 }
 
 h2.wishlist-title {
-  color: #FFFFFF;
+  color: #04A8BD;
   margin: 0;
   padding: 10px 0;
   text-align: center;
@@ -237,11 +241,13 @@ div.item-container:hover {
 }
 
 #drop-target-one {
-  color: #FFFFFF;
+  color: #04A8BD;
   font-size: 18px;
-  margin: 20px 0;
   padding:1em 1em;
-  text-align:center
+  text-align:center;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .over {
@@ -256,9 +262,11 @@ div.friend-container {
   text-align: left;
   margin-left:10px;
   margin-right:10px;
+  color:#333333;
 }
 
 span.friend-name {
+  color: #00B9D1;
 
 }
 
@@ -269,7 +277,7 @@ img.friend-thumbnail {
 }
 
 h2.friend-title {
-  color: #FFFFFF;
+  color: #00B9D1;
   margin: 0;
   padding: 18% 0;
   text-align: center;
@@ -406,7 +414,6 @@ div.friend-wishlist-item-name {
 
 div.item-image-container {
   width: 100px;
-  // background-color: red;
   display: inline-block;
   text-align: center;
 }
@@ -452,6 +459,7 @@ h1.comments {
   -webkit-animation-delay: 2s;
   -webkit-animation-iteration-count:1;
   // -webkit-animation-duration:1s;
+  overflow: -moz-scrollbars-none;
 }
 
 div.contributors-container {
