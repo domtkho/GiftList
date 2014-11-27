@@ -412,14 +412,19 @@ div.friend-wishlist-item-name {
   padding: 5px;
 }
 
+div.top-container {
+  background-color: #FFFFFF;
+  padding: 10px;
+}
+
 div.item-image-container {
-  width: 100px;
+  width: 150px;
   display: inline-block;
   text-align: center;
 }
 
 img.item-image {
-  height: 100px;
+  height: 150px;
 }
 
 div.name-category-container {

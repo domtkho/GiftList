@@ -94,9 +94,7 @@ App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope
     $scope.totalContribution = 0
     for contribution in $scope.contributors
       $scope.totalContribution += contribution.amount
-    console.log "Total is now : #{$scope.totalContribution}"
     $scope.remainingContribution = $scope.wanted_item.item.price - $scope.totalContribution
-    console.log "remaining: #{$scope.remainingContribution}"
     $scope.remainingPercentage = Math.floor(($scope.totalContribution / $scope.wanted_item.item.price ) * 100)
 
 
