@@ -25,12 +25,78 @@ App.config([ '$routeProvider', '$locationProvider', ($routeProvider, $locationPr
       controller: 'WishListController'
     ).when('/my_wish_list',
       templateUrl: "my_wish_list.html",
-      controller: 'WishListController'
+      controller: 'MyWishListController'
     )
 
   $locationProvider.html5Mode(true);
 ])
 
+
+# ng-controller for Wish Lists
+App.controller("MyWishListController", ["$scope", "$http", "$routeParams", ($scope, $http, $routeParams) ->
+
+  $scope.wanted_item = {}
+
+  $scope.getCurrentUser = () ->
+    $http.get("/api/currentUser.json")
+      .success (data) ->
+        $scope.current_user = data
+        $scope.wanted_item = $scope.current_user['wanted_items'][0]
+        $scope.retrieveContribution()
+        $scope.retrieveComments()
+      .error (data) ->
+        console.log " current user error"
+
+  $scope.changeWantedItem = (wanted_item_id) ->
+    $http.get("/api/wanted_items/#{wanted_item_id}.json")
+      .success (data) ->
+        $scope.wanted_item = data
+        $scope.retrieveContribution()
+        $scope.retrieveComments()
+      .error (data) ->
+        console.log " get wanted item error"
+
+
+  # retrieveContribution retrieves the array of contributors and the amount
+  $scope.retrieveContribution = ->
+    $http.get("api/wanted_items/#{$scope.wanted_item.id}/contributionData.json")
+      .success (data) ->
+        $scope.contributors = data   # Array of contributors and amount
+        $scope.showTotalContribution()
+      .error (data) ->
+        console.log "contribution retrieve error"
+
+  # calculates the latest total contribution
+  $scope.showTotalContribution = ->
+    $scope.totalContribution = 0
+    for contribution in $scope.contributors
+      $scope.totalContribution += contribution.amount
+    $scope.remainingContribution = $scope.wanted_item.item.price - $scope.totalContribution
+    $scope.remainingPercentage = Math.floor(($scope.totalContribution / $scope.wanted_item.item.price ) * 100)
+
+
+  $scope.postComment = (comment) ->
+    jsonObj = { content: comment, wanted_item_id: $scope.wanted_item.id }
+    jsonObj[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content')
+    $http.post("/api/comments.json", jsonObj)
+      .success (data) ->
+        console.log "comment posted"
+        $scope.comment = ""
+        $scope.retrieveComments()
+      .error (data) ->
+        console.log "contribution error"
+
+  $scope.retrieveComments = ->
+    $http.get("api/wanted_items/#{$scope.wanted_item.id}/commentData.json")
+      .success (data) ->
+        $scope.comments = data
+      .error (data) ->
+        console.log "comments retrieve error"
+
+
+  $scope.getCurrentUser()
+
+  ])
 
 
 # ng-controller for Wish Lists

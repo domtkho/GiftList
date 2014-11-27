@@ -509,7 +509,12 @@ div.contributors-container {
 }
 
 input.contribute-input {
+  margin-top: 10px;
   border-radius: 0;
+}
+
+button.make-contribution {
+  margin: 5px 0;
 }
 
 img.contributor-thumbnail {
