@@ -2,24 +2,72 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-App = angular.module('myApp', [])
+App = angular.module('myApp', ['ngRoute', 'templates'])
 
+# Setup AngularJS Routes
+App.config([ '$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
+  $routeProvider
+    .when('/',
+      templateUrl: "catalogue.html",
+      controller: 'GiftItemController'
+    ).when('/wishlist/:id',
+      templateUrl: "wish_list_details.html",
+      controller: 'WishListController'
+    )
+
+  $locationProvider.html5Mode(true);
+])
+
+# ng-controller for Wish Lists
+App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope, $http, routeParams) ->
+
+  $scope.wanted_item = {}
+
+  $scope.getList = () ->
+    $http.get("/api/lists/#{routeParams['id']}.json")
+      .success (data) ->
+        $scope.user = data
+        $scope.wanted_item = $scope.user['wanted_items'][0]
+        # console.log $scope.user
+        # console.log $scope.wanted_item
+      .error (data) ->
+        console.log " get user error"
+
+  $scope.getList()
+
+
+  $scope.changeWantedItem = (wanted_item_id) ->
+    $http.get("/api/wanted_items/#{wanted_item_id}.json")
+      .success (data) ->
+        $scope.wanted_item = data
+        console.log $scope.wanted_item
+      .error (data) ->
+        console.log " get wanted item error"
+
+  $scope.postComment = ->
+    jsonObj = routeParams['comment']
+    console.log jsonObj
+
+
+  ])
+
+
+# ng-controller for Catalogue
 App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
 
   $scope.wish_lists = {}
 
   $scope.loadItems = ->
-    $http.get("/items.json")
+    $http.get("/api/items.json")
       .success (data) ->
         $scope.items = data
       .error (data) ->
         console.log "data.error"
 
   $scope.loadWishList = ->
-    $http.get("/lists.json")
+    $http.get("/api/lists.json")
       .success (data) ->
         $scope.wish_lists = data[0].wanted_items
-        console.log $scope.wish_lists
       .error (data) ->
         console.log "Wish list error"
 
@@ -69,9 +117,6 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
       .error (data) ->
         console.log "Wish list error"
 
-  $scope.log = ->
-    console.log "HAHAHA"
-
   $scope.dragdrop = ->
     dropZoneOne = document.querySelector("#drop-target-one")
     dragElements = document.querySelectorAll(".list-drop")
@@ -115,8 +160,16 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
 
     return
 
+  $scope.loadFriends = ->
+    $http.get("/api/friends.json")
+      .success (data) ->
+        $scope.friends = data
+      .error (data) ->
+        console.log "friends data error"
+
+
   $scope.loadItems()
   $scope.loadWishList()
-  # $scope.test()
+  $scope.loadFriends()
 ])
 

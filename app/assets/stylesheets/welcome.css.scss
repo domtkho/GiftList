@@ -35,7 +35,6 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../img/intro-bg.jpg) no-repeat center center;
     background-size: cover;
 }
 
@@ -186,6 +185,7 @@ html, body, .container-fluid, .row {
     z-index: 1000;
     background-color: #46A1AD;
     display: block;
+    overflow: auto;
     padding: 0;
     text-align: center;
     box-shadow: 0 0 4px rgba(0,0,0,.14),2px 4px 8px rgba(0,0,0,.28);
@@ -270,6 +270,13 @@ h2.friend-title {
   text-align: center;
 }
 
+div.see-more {
+  background-color: #FFFFFF;
+  margin-top: 3px;
+  padding: 10px 20px;
+  text-align: center;
+}
+
 /*******   MAIN SECTION /
 /********************************************/
 
@@ -325,6 +332,7 @@ img.item-display-image {
 }
 
 
+
 // remove item from wishlist
 
 #remove-item {
@@ -335,3 +343,106 @@ button.close {
   padding-right:13px;
   margin-top: -2px;
 }
+
+/*******   Wish List Details SECTION /
+/********************************************/
+
+div.friend-info-container {
+  padding-top: 20px;
+}
+
+span.friend-display-name {
+  font-size: 24px;
+  padding-left: 20px;
+}
+
+img.friend-profile-image {
+  height: 100px;
+  width: 100px;
+  border: 5px solid #FFC000;
+  border-radius: 20px;
+}
+
+p.friends-wishlist-title {
+  font-size: 24px;
+}
+
+div.friend-wishlist-container {
+
+}
+
+div.friend-wishlist-item {
+  background-color: #F1B837;
+  border-top: 1px solid #F9F9F9;
+  border-bottom: 1px solid #F9F9F9;
+}
+
+div.friend-wishlist-item-priority {
+  height: 35px;
+  width: 37px;
+  background-color: #FF4081;
+  border-right: 2px solid #F9F9F9;
+  color: #FFFFFF;
+  font-size: 18px;
+  display: inline-block;
+  padding: 5px;
+  text-align: center;
+}
+
+div.friend-wanted-item-display {
+  padding-top: 20px;
+}
+
+div.friend-wishlist-item-name {
+  font-size: 18px;
+  display: inline;
+  padding: 5px;
+}
+
+div.item-image-container {
+  width: 100px;
+  // background-color: red;
+  display: inline-block;
+  text-align: center;
+}
+
+img.item-image {
+  height: 100px;
+}
+
+div.name-category-container {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+p.item-name {
+  font-size: 24px;
+  margin: 0
+}
+
+p.item-category {
+  font-size: 18px;
+  margin: 0
+}
+
+h1.item-description-title {
+  font-size: 24px;
+}
+
+p.item-description {
+  height: 100px;
+  overflow: auto;
+}
+
+textarea.comment-textarea {
+  resize: none;
+}
+
+h1.comments {
+  font-size: 24px;
+}
+
+
+
+
+
