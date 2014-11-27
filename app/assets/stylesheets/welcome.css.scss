@@ -25,6 +25,10 @@ h6 {
     font-weight: 200;
 }
 
+.ng-link:hover, .ng-link:link {
+  text-decoration: none;
+}
+
 .lead {
     font-size: 18px;
     font-weight: 400;
@@ -210,7 +214,7 @@ img.sidebar-profile-image {
   width: 130px;
   border: 5px solid white;
   border-radius: 100px;
-  margin-top: 75px;
+  // margin-top: 75px;
 
 }
 
@@ -225,7 +229,7 @@ div.wish-list-container {
 h2.wishlist-title {
   color: #04A8BD;
   margin: 0;
-  padding: 10px 0;
+  padding: 18% 0;
   text-align: center;
 }
 
@@ -372,7 +376,7 @@ span.friend-display-name {
 img.friend-profile-image {
   height: 100px;
   width: 100px;
-  border: 5px solid #FFC000;
+  border: 3px solid white;
   border-radius: 20px;
 }
 
@@ -491,6 +495,8 @@ p.total-contribution {
   color:red;
   left:5%;
   top:0.5%;
+  font-family:"Roboto";
+  font-weight:100;
 }
 
 //Drag & Drop
