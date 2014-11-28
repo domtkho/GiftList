@@ -18,8 +18,7 @@ dropAnimation = () ->
 App.config([ '$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
   $routeProvider
     .when('/',
-      templateUrl: "catalogue.html",
-      controller: 'GiftItemController'
+      templateUrl: "catalogue.html"
     ).when('/wishlist/:id',
       templateUrl: "wish_list_details.html",
       controller: 'WishListController'
@@ -177,6 +176,7 @@ App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope
   $scope.retrieveContribution = ->
     $http.get("api/wanted_items/#{$scope.wanted_item.id}/contributionData.json")
       .success (data) ->
+        console.log data
         $scope.contributors = data   # Array of contributors and amount
         $scope.showTotalContribution()
       .error (data) ->
@@ -219,11 +219,12 @@ App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope
 # ng-controller for Catalogue
 App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
 
-  $scope.wish_lists = {}
+  $scope.wish_lists = []
 
   $scope.loadItems = ->
     $http.get("/api/items.json")
       .success (data) ->
+        console.log 'i am done loading the items'
         $scope.items = data
       .error (data) ->
         console.log "data.error"
@@ -270,6 +271,7 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
         console.log "Wish list error"
 
   $scope.dragdrop = ->
+    console.log 'i am setting up bindings for anything that might get dragged'
     dropZoneOne = document.querySelector("#drop-target-one")
     dragElements = document.querySelectorAll(".list-drop")
     elementDragged = null
@@ -307,7 +309,6 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
       @className = ""
       $scope.addItemToWishList($scope.selectedItem)
       elementDragged = null
-      $scope.loadWishList()
       dropAnimation()
       false
 
