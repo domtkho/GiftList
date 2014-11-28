@@ -30,7 +30,6 @@ App.config([ '$routeProvider', '$locationProvider', ($routeProvider, $locationPr
   $locationProvider.html5Mode(true);
 ])
 
-
 # ng-controller for My Wish Lists
 App.controller("MyWishListController", ["$scope", "$http", "$routeParams", ($scope, $http, $routeParams) ->
 
@@ -110,6 +109,10 @@ App.controller("MyWishListController", ["$scope", "$http", "$routeParams", ($sco
       .error (data) ->
         console.log "comments retrieve error"
 
+
+  $scope.$on( "reloadList", ->
+    $scope.getMyList()
+  )
 
   $scope.getCurrentUser()
 
@@ -255,6 +258,7 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
       .success (data) ->
         console.log "Item destroyed"
         $scope.loadWishList()
+        $scope.$broadcast("reloadList")
       .error (data) ->
         console.log "data error"
 
