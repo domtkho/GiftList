@@ -1,23 +1,21 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-2 sidebar-left">
-        <h2 class="wishlist-title"><%= current_user.name.split(" ")[0]%>s List</h2>
+        <h2 class="wishlist-title"><%= current_user.name.split(" ")[0]%>'s List</h2>
       <img src="https://graph.facebook.com/<%= current_user.uid %>/picture?width=300&height=300" alt="" class="sidebar-profile-image">
 
       <div class="wish-list-container">
-  <!--       <div class="btn btn-success" ng-click="loadWishList()">Refresh</div> -->
         <div id="dd-elements" class="clearfix animated shake">
           <div id="drop-target-one">
             I <i class="fa fa-heart"></i> THIS
           </div>
         </div>
-        <div ng-repeat="wanted_item in wish_lists" ng-class="{{wanted_item.id}}">
-        <button type="button" ng-click="removeItemFromWishList(wanted_item.id)" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-          <div class="item-container">
-            <span>{{ wanted_item.item.name }}</span>
-
-            <span class="pull-right">{{ wanted_item.item.price | currency }}</span>
-          </div>
+        <div ng-repeat="wanted_item in wish_lists" id="item-{{wanted_item.id}}" class="wanted_item" ng-class="item-{{wanted_item.id}}">
+            <button type="button" ng-click="removeItemFromWishList(wanted_item.id)" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <div class="item-container">
+              <span>{{ wanted_item.item.name }}</span>
+              <span class="pull-right">{{ wanted_item.item.price | currency }}</span>
+            </div>
         </div>
 
 

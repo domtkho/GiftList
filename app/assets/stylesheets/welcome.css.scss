@@ -252,6 +252,12 @@ div.item-container:hover {
   max-width: 80%;
   margin-left: auto;
   margin-right: auto;
+  border:5px dashed white;
+  border-radius:5px;
+  margin-bottom:10px;
+}
+
+.remove-item {
 }
 
 .over {
@@ -625,14 +631,65 @@ div.search-bar-container {
 #animated-text {
   position:absolute;
   font-size:3em;
-  color:red;
-  left:5%;
+  left:35%;
   top:0.5%;
   font-family:"Roboto";
   font-weight:100;
+  color:#333;
 }
 
 //Drag & Drop
 .over {
   background-color:rgba(255, 255, 255, 0.41);
+}
+
+
+// MODAL STYLING
+
+.modal-body {
+  background-color: #ECF0F0;
+}
+
+.modal-body > h2, h3 {
+  color:#04A8BD;
+  text-align:center;
+}
+
+.modal-body > img {
+  max-width:200px;
+  max-height:200px;
+  display:block;
+  margin-right:auto;
+  margin-left:auto;
+  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+
+}
+
+.modal-body > h4 {
+  text-align:center;
+  padding-bottom:40px;
+}
+
+.modal-body > p {
+  padding-top:40px;
+}
+.modal-header {
+  background-color:#00B9D1;
+}
+
+.modal-header > h2 {
+  color:white;
+}
+
+.modal-footer > .btn.btn-default {
+  background-color: #337ab7;
+  color:white;
+}
+.modal-footer > .btn.btn-default:hover {
+  background-color:#286090;
+}
+
+.modal-footer {
+  background-color:#ECF0F0;
+
 }
