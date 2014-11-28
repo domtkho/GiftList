@@ -31,30 +31,6 @@ body {
   }
 }
 
-// #navbar > ul:nth-child(1) > li {
-//   padding-top:15px;
-
-// }
-
-div.search-bar-container {
-  height: 50px;
-  padding-left: 5px;
-  margin-top: 1px;
-  background-color: #FFFFFF;
-  text-align: left;
-  margin-left:10px;
-  margin-right:10px;
-}
-
-input.search-bar {
-//   height: 30px;
-//   width: 310px;
-  border-radius: 2px;
-//   border: none;
-//   margin: 10px 15px;
-//   padding-left: 10px;
-}
-
 ul.navbar-right {
   padding-right: 30px;
   padding-top:1%;
@@ -74,87 +50,89 @@ img.navbar-profile-thumbnail {
 // Trying the ripple
 
 /* form starting stylings ------------------------------- */
-.group        {
-  position:relative;
-  margin-bottom:45px;
-}
-input         {
-  font-size:18px;
-  padding:10px 10px 10px 5px;
-  display:block;
-  margin-right: 10px;
-  border:none;
-  border-bottom:1px solid #757575;
-  width: 300px;
-}
-input:focus     { outline:none; }
+.input-fancy {
+  .group        {
+    position:relative;
+    margin-bottom:45px;
+  }
+  input         {
+    font-size:18px;
+    padding:10px 10px 10px 5px;
+    display:block;
+    margin-right: 10px;
+    border:none;
+    border-bottom:1px solid #757575;
+    width: 300px;
+  }
+  input:focus     { outline:none; }
 
-/* LABEL ======================================= */
-label          {
-  color:#999;
-  font-size:18px;
-  font-weight:100;
-  position:absolute;
-  pointer-events:none;
-  left:5px;
-  top:10px;
-  transition:0.2s ease all;
-}
+  /* LABEL ======================================= */
+  label          {
+    color:#999;
+    font-size:18px;
+    font-weight:100;
+    position:absolute;
+    pointer-events:none;
+    left:5px;
+    top:10px;
+    transition:0.2s ease all;
+  }
 
-/* active state */
-input:focus ~ label, input:valid ~ label     {
-  top:-20px;
-  font-size:14px;
-  color:#FFF;
-}
+  /* active state */
+  input:focus ~ label, input:valid ~ label     {
+    top:-20px;
+    font-size:14px;
+    color:#FFF;
+  }
 
-/* BOTTOM BARS ================================= */
-.bar  { position:relative; display:block; width:300px; }
-.bar:before, .bar:after   {
-  content:'';
-  height:2px;
-  width:0;
-  bottom:1px;
-  position:absolute;
-  background:gray;
-  transition:0.2s ease all;
-}
-.bar:before {
-  left:50%;
-}
-.bar:after {
-  right:50%;
-}
+  /* BOTTOM BARS ================================= */
+  .bar  { position:relative; display:block; width:300px; }
+  .bar:before, .bar:after   {
+    content:'';
+    height:2px;
+    width:0;
+    bottom:1px;
+    position:absolute;
+    background:gray;
+    transition:0.2s ease all;
+  }
+  .bar:before {
+    left:50%;
+  }
+  .bar:after {
+    right:50%;
+  }
 
-/* active state */
-input:focus ~ .bar:before, input:focus ~ .bar:after {
-  width:50%;
-}
+  /* active state */
+  input:focus ~ .bar:before, input:focus ~ .bar:after {
+    width:50%;
+  }
 
-/* HIGHLIGHTER ================================== */
-.highlight {
-  position:absolute;
-  height:60%;
-  width:100px;
-  top:25%;
-  left:0;
-  pointer-events:none;
-  opacity:0.5;
-}
+  /* HIGHLIGHTER ================================== */
+  .highlight {
+    position:absolute;
+    height:60%;
+    width:100px;
+    top:25%;
+    left:0;
+    pointer-events:none;
+    opacity:0.5;
+  }
 
-/* active state */
-input:focus ~ .highlight {
-  animation:inputHighlighter 0.3s ease;
-}
+  /* active state */
+  input:focus ~ .highlight {
+    animation:inputHighlighter 0.3s ease;
+  }
 
-/* ANIMATIONS ================ */
-@keyframes inputHighlighter {
-  from  { background:#00B9D1; }
-  to    { width:0; background:transparent; }
-}
+  /* ANIMATIONS ================ */
+  @keyframes inputHighlighter {
+    from  { background:#00B9D1; }
+    to    { width:0; background:transparent; }
+  }
 
-#tasty-search-bar {
-  margin: 0 10px 10px;
-  // padding-left: 5px;
-  // padding-top:1%;
+  #tasty-search-bar {
+    margin: 0 10px 10px;
+    // padding-left: 5px;
+    // padding-top:1%;
+  }
 }

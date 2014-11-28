@@ -1,9 +1,9 @@
 <div "search-bar-container">
-  <ul class="nav" id="tasty-search-bar">
-    <li><input type="text" required placeholder="" class="search-bar" ng-model="catalogueItems">
+  <ul class="nav input-fancy catalogue-search">
+    <li id="tasty-search-bar"><input type="text" required placeholder="" class="search-bar" ng-model="catalogueItems">
     <span class="highlight"></span>
     <span class="bar"></span>
-    <label>Search</label></li>
+    <label>Search catalogue</label></li>
   </ul>
 </div>
 <div ng-repeat="item in items | filter:catalogueItems" ng-init="$last ? dragdrop() : null">

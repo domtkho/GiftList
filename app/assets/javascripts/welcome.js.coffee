@@ -327,8 +327,11 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
         console.log "friends data error"
 
   $scope.reactiveSearchBarWidth = ->
-    $('input.search-bar').css('width', $('div.friend-container').css('width'))
-    $('.bar').css('width', $('div.friend-container').css('width'))
+    $('.friends-search input.search-bar').css('width', $('div.friend-container').css('width'))
+    $('.friend-search .bar').css('width', $('div.friend-container').css('width'))
+
+    $('.catalogue-search input.search-bar').css('width', $('li#tasty-search-bar').css('width'))
+    $('.catalogue-search .bar').css('width', $('li#tasty-search-bar').css('width'))
 
   $(window).resize( $scope.reactiveSearchBarWidth )
 
