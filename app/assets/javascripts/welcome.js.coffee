@@ -260,7 +260,6 @@ App.controller("GiftItemController", ["$scope", "$http", "$timeout", ($scope, $h
     $http.delete("api/wanted_items/#{wanted_item_id}.json")
       .success (data) ->
         console.log "Item destroyed"
-        $scope.loadWishList()
         $scope.$broadcast("reloadList")
         removeAnimation(wanted_item_id)
         $timeout($scope.loadWishList, 1000)
