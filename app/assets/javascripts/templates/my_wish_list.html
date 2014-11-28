@@ -1,9 +1,17 @@
-<div class="col-md-4 friend-wishlist-container">
-  <p class="friends-wishlist-title">Selected Items</p>
-  <p class="friends-wishlist-tagline">Click on number to adjust priority if needed</p>
-  <div ng-repeat="wanted_item in myList.wanted_items | orderBy:'priority':'reverse'" class="friend-wishlist-item">
-    <div class="friend-wishlist-item-priority" data-toggle="modal" data-target="#priority-{{wanted_item.id}}">{{ wanted_item.priority }}</div>
-    <div class="friend-wishlist-item-name" ng-click="changeWantedItem(wanted_item.id)">{{ wanted_item.item.name }}</div>
+<div ng-if="myList.wanted_items.length == 0" class="no-item-message-container">
+  <h1>You have no items in your wish list</h1>
+  <h2>Browse our catalogue now!</h2>
+</div>
+
+<div ng-if="myList.wanted_items.length > 0">
+
+  <div class="col-md-4 friend-wishlist-container">
+    <p class="friends-wishlist-title">Selected Items</p>
+    <p class="friends-wishlist-tagline">Click on number to adjust priority if needed</p>
+    <div ng-repeat="wanted_item in myList.wanted_items | orderBy:'priority':'reverse'" class="friend-wishlist-item">
+      <div class="friend-wishlist-item-priority" data-toggle="modal" data-target="#priority-{{wanted_item.id}}">{{ wanted_item.priority }}</div>
+      <div class="friend-wishlist-item-name" ng-click="changeWantedItem(wanted_item.id)">{{ wanted_item.item.name }}</div>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="priority-{{wanted_item.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -29,79 +37,78 @@
         </div>
       </div>
     </div>
-
-
-  </div>
-</div>
-
-<div class="col-md-8 friend-wanted-item-display">
-
-  <div class="row top-container">
-    <div class="col-xs-3 item-image-container">
-      <img ng-src="{{ wanted_item['item']['image'] }}" class="item-image" alt="product-picture">
-    </div>
-    <div class="col-xs-4 name-category-container">
-      <p class="item-name">{{ wanted_item['item']['name'] }}</p>
-      <p class="item-category">{{ wanted_item['item']['category'] }}</p>
-    </div>
-    <div class="col-xs-5 item-description-container">
-      <p class="item-description">{{ wanted_item['item']['description'] }}</p>
-    </div>
   </div>
 
-  <div class="row">
-    <div class="contribute-section">
-      <h1 class="contribute-title">Your Friend's Contributions</h1>
-    </div>
-    <hr>
+  <div class="col-md-8 friend-wanted-item-display">
 
-    <div class="col-xs-6">
-      <div class="name-category-container">
-        <p class="price">Price:<span class="pull-right">{{ wanted_item.item.price | currency }}</span></p>
-        <p class="total-contribution">Contribution:<span class="pull-right">{{ totalContribution | currency }}</span></p>
+    <div class="row top-container">
+      <div class="col-xs-3 item-image-container">
+        <img ng-src="{{ wanted_item['item']['image'] }}" class="item-image" alt="product-picture">
       </div>
-      <div class="progress">
-        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{ remainingPercentage }}%">
-        {{ remainingPercentage }}%
+      <div class="col-xs-4 name-category-container">
+        <p class="item-name">{{ wanted_item['item']['name'] }}</p>
+        <p class="item-category">{{ wanted_item['item']['category'] }}</p>
+      </div>
+      <div class="col-xs-5 item-description-container">
+        <p class="item-description">{{ wanted_item['item']['description'] }}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="contribute-section">
+        <h1 class="contribute-title">Your Friend's Contributions</h1>
+      </div>
+      <hr>
+
+      <div class="col-xs-6">
+        <div class="name-category-container">
+          <p class="price">Price:<span class="pull-right">{{ wanted_item.item.price | currency }}</span></p>
+          <p class="total-contribution">Contribution:<span class="pull-right">{{ totalContribution | currency }}</span></p>
+        </div>
+        <div class="progress">
+          <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{ remainingPercentage }}%">
+          {{ remainingPercentage }}%
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="col-xs-6">
-      <div ng-repeat="contributor in contributors" class="contributors-container">
-        <img ng-src="{{ contributor.user.image }}" alt="contributors" class="contributor-thumbnail">
+      <div class="col-xs-6">
+        <div ng-repeat="contributor in contributors" class="contributors-container">
+          <img ng-src="{{ contributor.user.image }}" alt="contributors" class="contributor-thumbnail">
+        </div>
       </div>
+
     </div>
 
-  </div>
+    <div class="comments-section">
 
-  <div class="comments-section">
+      <div class="contribute-section">
+        <h1 class="contribute-title">Comments</h1>
+      </div>
+      <hr>
 
-    <div class="contribute-section">
-      <h1 class="contribute-title">Comments</h1>
-    </div>
-    <hr>
-
-    <div ng-repeat="comment in comments">
-      <div class="comment-thumbnail-container col-xs-2"><img ng-src="{{ comment.user.image }}" class="comment-thumbnail-image" alt="thumbnail"></div>
+      <div ng-repeat="comment in comments">
+        <div class="comment-thumbnail-container col-xs-2"><img ng-src="{{ comment.user.image }}" class="comment-thumbnail-image" alt="thumbnail"></div>
+        <div class="comment-text-container col-xs-10">
+          <p class="commenter-name">@{{ comment.user.name }} <span class="comment-created-at pull-right">{{ comment.created_at | date }}</span></p>
+          <p class="comment-content">{{ comment.content }}</p>
+        </div>
+      </div>
+      <div class="preview">
+        <p>- Preview Your Comment Below -</p>
+      </div>
+      <div class="comment-thumbnail-container col-xs-2"><img ng-src="{{ current_user.image }}" class="comment-thumbnail-image" alt="thumbnail"></div>
       <div class="comment-text-container col-xs-10">
-        <p class="commenter-name">@{{ comment.user.name }} <span class="comment-created-at pull-right">{{ comment.created_at | date }}</span></p>
-        <p class="comment-content">{{ comment.content }}</p>
+        <p class="commenter-name">@{{ current_user.name }} <span class="comment-created-at pull-right">{{ comment.created_at | date }}</span></p>
+        <p class="comment-content" ng-bind="comment"></p>
       </div>
-    </div>
-    <div class="preview">
-      <p>- Preview Your Comment Below -</p>
-    </div>
-    <div class="comment-thumbnail-container col-xs-2"><img ng-src="{{ current_user.image }}" class="comment-thumbnail-image" alt="thumbnail"></div>
-    <div class="comment-text-container col-xs-10">
-      <p class="commenter-name">@{{ current_user.name }} <span class="comment-created-at pull-right">{{ comment.created_at | date }}</span></p>
-      <p class="comment-content" ng-bind="comment"></p>
-    </div>
 
-    <form name="commentForm" ng-submit="postComment(comment)">
-      <textarea ng-model="comment" class="form-control comment-textarea" rows="5" placeholder="Add comments"></textarea>
-      <button class="btn btn-primary" type="submit">Post comment</button>
-    </form>
+      <form name="commentForm" ng-submit="postComment(comment)">
+        <textarea ng-model="comment" class="form-control comment-textarea" rows="5" placeholder="Add comments"></textarea>
+        <button class="btn btn-primary" type="submit">Post comment</button>
+      </form>
+
+    </div>
 
   </div>
 
