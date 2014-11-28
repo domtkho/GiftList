@@ -14,14 +14,13 @@
 
 
 <div class="col-md-8 friend-wanted-item-display">
-
-  <div ng-if="!contributors">
+  <div ng-if="friend_wanted_items.length == 0">
     <div class="empty-wishlist">
       <h1>{{ user.name }} has an empty wish list</h1>
     </div>
   </div>
 
-  <div ng-if="contributors">
+  <div ng-if="friend_wanted_items.length > 0">
 
     <div class="row top-container">
       <div class="col-xs-3 item-image-container">

@@ -133,7 +133,8 @@ App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope
     $http.get("/api/lists/#{$routeParams['id']}.json")
       .success (data) ->
         $scope.user = data
-        $scope.wanted_item = $scope.user['wanted_items'][0]
+        $scope.friend_wanted_items = $scope.user.wanted_items
+        $scope.wanted_item = $scope.friend_wanted_items[0]
         $scope.retrieveContribution()
         $scope.retrieveComments()
       .error (data) ->
