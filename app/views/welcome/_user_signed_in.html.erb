@@ -32,7 +32,15 @@
 
     <div class="col-md-2 sidebar-right">
       <h2 class="friend-title">Friends</h2>
-      <div ng-repeat="friend in friends">
+      <div "search-bar-container">
+        <ul class="nav">
+          <li id="tasty-search-bar"><input type="text" required placeholder="" class="search-bar" ng-model="friendNames">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>Search friends</label></li>
+        </ul>
+      </div>
+      <div ng-repeat="friend in friends | filter:friendNames">
         <div class="friend-container">
           <span><img ng-src="{{ friend.image }}" alt="friend profile image" class="friend-thumbnail"></span>
           <span class="friend-name"><a ng-href="/wishlist/{{ friend.id }}">{{ friend.name }}</a></span>

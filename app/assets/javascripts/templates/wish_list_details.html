@@ -1,26 +1,29 @@
+<div ng-if="friend_wanted_items.length == 0" >
 
-<div class="col-md-4 friend-wishlist-container">
-  <div class="friend-info-container">
-    <span><img ng-src="https://graph.facebook.com/{{user.uid}}/picture?width=300&height=300" class="friend-profile-image" alt="profile pic"></span>
-    <span class="friend-display-name">{{user.name}}</span>
-  </div>
-  <hr>
-  <p class="friends-wishlist-title">I want...</p>
-  <div ng-repeat="wanted_item in user.wanted_items | orderBy:'priority':'reverse'" class="friend-wishlist-item">
-    <div class="friend-wishlist-item-priority">{{ wanted_item.priority }}</div>
-    <div class="friend-wishlist-item-name" ng-click="changeWantedItem(wanted_item.id)">{{ wanted_item.item.name }}</div>
+  <div class="empty-wishlist">
+    <img src="https://graph.facebook.com/{{ user.uid }}/picture?width=300&height=300" alt="" class="sidebar-profile-image">
+    <h1>{{ user.name }}</h1>
+    <h2> has an empty wish list</h2>
   </div>
 </div>
 
+<div ng-if="friend_wanted_items.length > 0">
 
-<div class="col-md-8 friend-wanted-item-display">
-  <div ng-if="friend_wanted_items.length == 0">
-    <div class="empty-wishlist">
-      <h1>{{ user.name }} has an empty wish list</h1>
+  <div class="col-md-4 friend-wishlist-container">
+    <div class="friend-info-container">
+      <span><img ng-src="https://graph.facebook.com/{{user.uid}}/picture?width=300&height=300" class="friend-profile-image" alt="profile pic"></span>
+      <span class="friend-display-name">{{user.name}}</span>
+    </div>
+    <hr>
+    <p class="friends-wishlist-title">I want...</p>
+    <div ng-repeat="wanted_item in user.wanted_items | orderBy:'priority':'reverse'" class="friend-wishlist-item">
+      <div class="friend-wishlist-item-priority">{{ wanted_item.priority }}</div>
+      <div class="friend-wishlist-item-name" ng-click="changeWantedItem(wanted_item.id)">{{ wanted_item.item.name }}</div>
     </div>
   </div>
 
-  <div ng-if="friend_wanted_items.length > 0">
+
+  <div class="col-md-8 friend-wanted-item-display">
 
     <div class="row top-container">
       <div class="col-xs-3 item-image-container">
@@ -72,36 +75,37 @@
       </div>
 
     </div>
-  </div>
 
-  <div class="comments-section">
+    <div class="comments-section">
 
-    <div class="contribute-section">
-      <h1 class="contribute-title">Comments</h1>
-    </div>
-    <hr>
+        <div class="contribute-section">
+          <h1 class="contribute-title">Comments</h1>
+        </div>
+        <hr>
 
-    <div ng-repeat="comment in comments">
-      <div class="comment-thumbnail-container col-xs-2"><img ng-src="{{ comment.user.image }}" class="comment-thumbnail-image" alt="thumbnail"></div>
-      <div class="comment-text-container col-xs-10">
-        <p class="commenter-name">@{{ comment.user.name }} <span class="comment-created-at pull-right">{{ comment.created_at | date }}</span></p>
-        <p class="comment-content">{{ comment.content }}</p>
+        <div ng-repeat="comment in comments">
+          <div class="comment-thumbnail-container col-xs-2"><img ng-src="{{ comment.user.image }}" class="comment-thumbnail-image" alt="thumbnail"></div>
+          <div class="comment-text-container col-xs-10">
+            <p class="commenter-name">@{{ comment.user.name }} <span class="comment-created-at pull-right">{{ comment.created_at | date }}</span></p>
+            <p class="comment-content">{{ comment.content }}</p>
+          </div>
+        </div>
+        <div class="preview">
+          <p>- Preview Your Comment Below -</p>
+        </div>
+        <div class="comment-thumbnail-container col-xs-2"><img ng-src="{{ current_user.image }}" class="comment-thumbnail-image" alt="thumbnail"></div>
+        <div class="comment-text-container col-xs-10">
+          <p class="commenter-name">@{{ current_user.name }} <span class="comment-created-at pull-right">{{ comment.created_at | date }}</span></p>
+          <p class="comment-content" ng-bind="comment"></p>
+        </div>
+
+        <form name="commentForm" ng-submit="postComment(comment)">
+          <textarea ng-model="comment" class="form-control comment-textarea" rows="5" placeholder="Add comments"></textarea>
+          <button class="btn btn-primary" type="submit">Post comment</button>
+        </form>
+
       </div>
     </div>
-    <div class="preview">
-      <p>- Preview Your Comment Below -</p>
-    </div>
-    <div class="comment-thumbnail-container col-xs-2"><img ng-src="{{ current_user.image }}" class="comment-thumbnail-image" alt="thumbnail"></div>
-    <div class="comment-text-container col-xs-10">
-      <p class="commenter-name">@{{ current_user.name }} <span class="comment-created-at pull-right">{{ comment.created_at | date }}</span></p>
-      <p class="comment-content" ng-bind="comment"></p>
-    </div>
-
-    <form name="commentForm" ng-submit="postComment(comment)">
-      <textarea ng-model="comment" class="form-control comment-textarea" rows="5" placeholder="Add comments"></textarea>
-      <button class="btn btn-primary" type="submit">Post comment</button>
-    </form>
-
   </div>
 
 </div>

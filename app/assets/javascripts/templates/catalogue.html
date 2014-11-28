@@ -1,4 +1,12 @@
-<div ng-repeat="item in items | filter:searchText" ng-init="$last ? dragdrop() : null">
+<div "search-bar-container">
+  <ul class="nav" id="tasty-search-bar">
+    <li><input type="text" required placeholder="" class="search-bar" ng-model="catalogueItems">
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label>Search</label></li>
+  </ul>
+</div>
+<div ng-repeat="item in items | filter:catalogueItems" ng-init="$last ? dragdrop() : null">
   <div class="col-md-4 product-tile">
     <div class="inner-tile list-drop" draggable="true" data-item="{{ item.id }}">
       <h2 class="product-name">{{ item.name }}</h2>

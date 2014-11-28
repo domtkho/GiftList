@@ -36,6 +36,16 @@ body {
 
 // }
 
+div.search-bar-container {
+  height: 50px;
+  padding-left: 5px;
+  margin-top: 1px;
+  background-color: #FFFFFF;
+  text-align: left;
+  margin-left:10px;
+  margin-right:10px;
+}
+
 input.search-bar {
 //   height: 30px;
 //   width: 310px;
@@ -72,9 +82,10 @@ input         {
   font-size:18px;
   padding:10px 10px 10px 5px;
   display:block;
-  width:300px;
+  margin-right: 10px;
   border:none;
   border-bottom:1px solid #757575;
+  width: 300px;
 }
 input:focus     { outline:none; }
 
@@ -143,6 +154,7 @@ input:focus ~ .highlight {
 }
 
 #tasty-search-bar {
-  padding-left:5%;
-  padding-top:1%;
+  margin: 0 10px 10px;
+  // padding-left: 5px;
+  // padding-top:1%;
 }

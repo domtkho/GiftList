@@ -322,12 +322,20 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
     $http.get("/api/friends.json")
       .success (data) ->
         $scope.friends = data
+        setTimeout($scope.reactiveSearchBarWidth, 0)
       .error (data) ->
         console.log "friends data error"
 
+  $scope.reactiveSearchBarWidth = ->
+    $('input.search-bar').css('width', $('div.friend-container').css('width'))
+    $('.bar').css('width', $('div.friend-container').css('width'))
+
+  $(window).resize( $scope.reactiveSearchBarWidth )
 
   $scope.loadItems()
   $scope.loadWishList()
   $scope.loadFriends()
 ])
+
+
 
