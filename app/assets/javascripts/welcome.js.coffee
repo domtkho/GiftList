@@ -4,14 +4,17 @@
 
 App = angular.module('myApp', ['ngRoute', 'templates'])
 dropAnimation = () ->
-  dropText = document.createElement("span")
+  dropText = document.createElement("i")
   dropText.id = "animated-text"
-  dropText.innerHTML = "Item Added!"
+  dropText.innerHTML = ""
   if $('#animated-text').length < 1
     $('#drop-target-one').append(dropText)
-  $('#animated-text').addClass("animated fadeOutUp")
+  $('#animated-text').addClass("fa fa-gift").addClass("animated zoomOutDown")
   setTimeout ( ->
     $('#animated-text').remove()), 1000
+
+removeAnimation = (wanted_item_id) ->
+  $('#item-' + wanted_item_id).addClass("animated zoomOutLeft")
 
 
 # Setup AngularJS Routes
@@ -217,7 +220,7 @@ App.controller("WishListController", ["$scope", "$http", "$routeParams", ($scope
 
 
 # ng-controller for Catalogue
-App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
+App.controller("GiftItemController", ["$scope", "$http", "$timeout", ($scope, $http, $timeout) ->
 
   $scope.wish_lists = []
 
@@ -254,7 +257,8 @@ App.controller("GiftItemController", ["$scope", "$http", ($scope, $http) ->
     $http.delete("api/wanted_items/#{wanted_item_id}.json")
       .success (data) ->
         console.log "Item destroyed"
-        $scope.loadWishList()
+        removeAnimation(wanted_item_id)
+        $timeout($scope.loadWishList, 1000)
       .error (data) ->
         console.log "data error"
 
